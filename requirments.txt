@@ -1,0 +1,38 @@
+Discord clone requirments 
+
+
+1. Real-time messaging
+
+    - Text-channels => like channels in servers
+    - Direct messages (DMS) => one-to-one chat
+    - Websockets (optional) not-decided yet
+
+2. Video&Voice chats (optional) not-decided yet
+
+
+3. User authentication (github/JWT)
+
+4. User profiles => user can change their display name/ avatar/ status (idle-online-offline)
+
+    - user can add other users as friends/ list of pending and blocked users (maybe)
+
+5. Servers & channels => users can create and join servers 
+    - servers contains chat channels
+    - voice channels (optional) not decided yet
+    - Admin role can delete messages and remove users from servers
+
+6. Add moderator role (optional)
+
+
+7. File sharing & meedia 
+    - Allow for sending images and gifs
+    - maybe save them in some cloud 
+
+
+8- Notifications
+
+
+9- reactions to messages
+
+
+10- search functionality in channels (optional)
