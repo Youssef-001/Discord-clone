@@ -24,16 +24,39 @@ password String @unique
 avatar String? 
 status Status @default(ONLINE)
 createdAt DateTime @default(now())
-servers Servers[] 
+memberOf Servers[]  @relation("UserServers")
 messages Messages[]
+
+  ownedServers Servers[] @relation("UserOwnedServers")
+
+
+
+ // Many-to-many relation for friends (users can have multiple friends)
+  friends     UserFriends[] @relation("UserFriendsUser")
+
+  // Reverse relation for friends (users can be friends with other users)
+  friendOf    UserFriends[] @relation("UserFriendsFriend")
 }
 
+model UserFriends {
+  userId    String
+  friendId  String
+  user      Users  @relation("UserFriendsUser", fields: [userId], references: [id])
+  friend    Users  @relation("UserFriendsFriend", fields: [friendId], references: [id])
+
+  @@id([userId, friendId]) // Composite primary key
+}
 
 model Servers {
   id String @id @default(uuid())
   name String 
-  members Users[] 
+  members Users[] @relation("UserServers")
   channels Channels[]
+  userId    String   // Foreign key to the user who owns the server
+  user      Users    @relation("UserOwnedServers", fields: [userId], references: [id])
+
+  
+  
 
 }
 
