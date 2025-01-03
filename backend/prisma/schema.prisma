@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Users {
+
+id String @id @default(uuid())
+email String @unique
+display_name String 
+username String @unique
+password String @unique
+avatar String? 
+status Status @default(ONLINE)
+createdAt DateTime @default(now())
+servers Servers[] @relation("UserServers")
+messages Messages[]
+}
+
+
+model Servers {
+  id String @id @default(uuid())
+  name String 
+  members Users[] @relation("UserServers")
+  channels Channels[]
+
+}
+
+
+model Channels {
+  id String @id @default(uuid())
+  name String 
+  serverId String 
+  server Servers @relation(fields:[serverId], references: [id])
+  messages Messages[]
+
+}
+
+model Messages {
+  id String @id @default(uuid())
+  message String 
+  userId String 
+  user Users @relation(fields:[userId], references: [id])
+  channelId String
+  channel Channels @relation(fields:[channelId], references: [id])
+  date DateTime @default(now())
+
+}
+
+enum Status {
+  ONLINE
+  IDLE
+  DND      // Do Not Disturb
+  INVISIBLE
+}

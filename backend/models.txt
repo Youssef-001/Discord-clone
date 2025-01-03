@@ -1,0 +1,35 @@
+users:
+    id
+    email
+    display name
+    username
+    password
+    avatar
+    status
+
+
+servers:
+    id
+    name
+    users rel
+    channels rel 
+
+
+
+channels:
+    id
+    channel name
+    server rel
+    messages
+    roles 
+
+
+messages:
+    id
+    Text
+    user rel
+    channel rel 
+    date 
+
+    
+
