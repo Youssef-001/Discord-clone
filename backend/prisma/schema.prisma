@@ -24,7 +24,7 @@ password String @unique
 avatar String? 
 status Status @default(ONLINE)
 createdAt DateTime @default(now())
-servers Servers[] @relation("UserServers")
+servers Servers[] 
 messages Messages[]
 }
 
@@ -32,7 +32,7 @@ messages Messages[]
 model Servers {
   id String @id @default(uuid())
   name String 
-  members Users[] @relation("UserServers")
+  members Users[] 
   channels Channels[]
 
 }
