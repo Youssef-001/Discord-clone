@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const sign_up_router = require('./routes/sign-up');
 const login_router = require('./routes/login')
-
+const server_router = require('./routes/server')
 
 app.get('/', (req,res) => {
     res.send('hi')
@@ -18,6 +18,8 @@ app.get('/', (req,res) => {
 app.use('/signup', sign_up_router);
 
 app.use('/login', login_router)
+
+app.use('/server', server_router)
 
 
 

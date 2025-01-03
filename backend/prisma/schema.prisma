@@ -52,11 +52,8 @@ model Servers {
   name String 
   members Users[] @relation("UserServers")
   channels Channels[]
-  userId    String   // Foreign key to the user who owns the server
-  user      Users    @relation("UserOwnedServers", fields: [userId], references: [id])
-
-  
-  
+  ownerId    String   // Foreign key to the user who owns the server
+  user      Users    @relation("UserOwnedServers", fields: [ownerId], references: [id])
 
 }
 
