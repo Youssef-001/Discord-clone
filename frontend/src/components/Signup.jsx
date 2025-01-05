@@ -77,7 +77,14 @@ border-radius: 6px;
 
 const UserSpan = styled.div`
 padding-top: 5px;
-color: ${(props) => (props.isValid ? 'green':'#e16e73')}
+color: ${(props) => (props.isValid ? '#50905D':'#e16e73')}
+
+`
+
+
+const PasswordLabel = styled.label`
+
+color: ${(props) => (props.isValid ? '#50905D':'#e16e73')}
 
 
 `
@@ -96,7 +103,8 @@ function Signup()
     
     const [usernameIsValid, setUsernameIsValid] = useState();
     const [usernameError, setUsernameError] = useState('');
-    const [emailValid, setEmailValid] = useState(true)
+    const [emailValid, setEmailValid] = useState(true);
+    const [passwordValid, setPasswordValid] = useState();
 
     function validateMail(email)
     {
@@ -129,8 +137,29 @@ function Signup()
                 setUsernameError('Username is avaliable. Nice!')
             }
     };
+    
 
-    function handlePasswordLabel(){};
+    function handlePasswordLabel(password){
+
+
+        if (password == '')
+        {
+            setPasswordLabel('PASSWORD - Required');
+            setPasswordValid(false)
+        }
+
+        if (password > 8)
+        {
+            setPasswordValid(true);
+            setPasswordLabel(' ');
+            
+        }
+        else {
+            setPasswordValid(false);
+            setPasswordLabel('PASSWORD - Must be at least 8 characters long')
+        }
+
+    }
 
     return (
         <Container>
@@ -160,7 +189,7 @@ function Signup()
                 </inputDiv>
                 <inputDiv>
 
-                <Label htmlFor="password">{passwordLabel}<RedStar> *</RedStar></Label>
+                <PasswordLabel isValid={passwordValid} htmlFor="password">{passwordLabel}<RedStar> *</RedStar></PasswordLabel>
                 <Input type="password" onChange={(e) => {setPassword(e.target.value); handlePasswordLabel()}} />
 
                 </inputDiv>
