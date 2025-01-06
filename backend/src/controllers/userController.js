@@ -2,7 +2,7 @@
 const bcrypt = require("bcryptjs");
 const user_queries = require('../queries/user_queries');
 
-async function createUser(req,res)
+async function createUser(req,res,next)
 {
 
     try {

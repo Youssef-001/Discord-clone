@@ -3,7 +3,7 @@ import {useState} from 'react'
 import styled from 'styled-components';
 
 const RedStar = styled.span`
-color: red;`
+color: #AF5D65;`
 
 const LoginLink = styled.a`
 color:#5865f2;
@@ -14,7 +14,7 @@ const Label = styled.label`
 color:white`
 
 const EmailLabel = styled.label`
-color: ${(props) => (props.isValid ? 'white':'red')}
+color: ${(props) => (props.isValid ? 'white':'#AF5D65')}
 `
 
 const H1 = styled.h1`
@@ -104,7 +104,7 @@ function Signup()
     const [usernameIsValid, setUsernameIsValid] = useState();
     const [usernameError, setUsernameError] = useState('');
     const [emailValid, setEmailValid] = useState(true);
-    const [passwordValid, setPasswordValid] = useState();
+    const [passwordValid, setPasswordValid] = useState(true);
 
     function validateMail(email)
     {
@@ -145,17 +145,17 @@ function Signup()
         if (password == '')
         {
             setPasswordLabel('PASSWORD - Required');
-            setPasswordValid(false)
+            // setPasswordValid(false)
         }
 
-        if (password > 8)
+        if (password.length > 8)
         {
-            setPasswordValid(true);
-            setPasswordLabel(' ');
+            // setPasswordValid(true);
+            setPasswordLabel('PASSWORD *');
             
         }
         else {
-            setPasswordValid(false);
+            // setPasswordValid(false);
             setPasswordLabel('PASSWORD - Must be at least 8 characters long')
         }
 
@@ -164,11 +164,11 @@ function Signup()
     return (
         <Container>
         <LoginDiv>
-            <LoginForm action="POST">
+            <LoginForm action="http://localhost:5000/signup" method="POST">
             <H1>Create an account</H1>
                 <inputDiv>
                 <EmailLabel isValid={emailValid} htmlFor="email">{emailLabel}<RedStar> *</RedStar></EmailLabel>
-                <Input type="email"    onChange={(e) => {
+                <Input name="email" type="email"    onChange={(e) => {
           setEmail(e.target.value); // Update the state with the email value
           validateMail(e.target.value); // Validate the email format
           handleEmailLabel(); // Handle any label changes or other related tasks
@@ -178,19 +178,19 @@ function Signup()
                 <inputDiv>
 
                 <Label htmlFor="displayName">Display Name</Label>
-                <Input type="text" onChange={(e) => {setDisplayName(e.target.value)}}/>
+                <Input name="display_name" type="text" onChange={(e) => {setDisplayName(e.target.value)}}/>
 
                 </inputDiv>
 
                 <inputDiv>
                 <Label htmlFor="username">Username<RedStar> *</RedStar></Label>
-                <Input type="text" onChange={(e) => {setUsername(e.target.value); handleUsernameLabel(e.target.value)}} />
+                <Input name="username" type="text" onChange={(e) => {setUsername(e.target.value); handleUsernameLabel(e.target.value)}} />
                 <UserSpan isValid={usernameIsValid}>{usernameError}</UserSpan>
                 </inputDiv>
                 <inputDiv>
 
-                <PasswordLabel isValid={passwordValid} htmlFor="password">{passwordLabel}<RedStar> *</RedStar></PasswordLabel>
-                <Input type="password" onChange={(e) => {setPassword(e.target.value); handlePasswordLabel()}} />
+                <PasswordLabel isValid={passwordValid} htmlFor="password">{passwordLabel}   </PasswordLabel>
+                <Input name="password" type="password" onChange={(e) => {setPassword(e.target.value); handlePasswordLabel(e.target.value)}} />
 
                 </inputDiv>
 
