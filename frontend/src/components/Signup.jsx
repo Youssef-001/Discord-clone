@@ -106,6 +106,10 @@ function Signup()
     const [emailValid, setEmailValid] = useState(true);
     const [passwordValid, setPasswordValid] = useState(true);
 
+
+    const [errors, setErrors] = useState([]); // For backend validation errors
+
+
     function validateMail(email)
     {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -161,10 +165,40 @@ function Signup()
 
     }
 
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setErrors([]); // Clear previous errors
+    
+        try {
+          const response = await fetch('http://localhost:5000/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, displayName, username, password }),
+          });
+    
+          if (!response.ok) {
+            const data = await response.json();
+            if (data.errors) {
+              setErrors(data.errors); // Set validation errors from backend
+            }
+          } else {
+            alert('Account created successfully!');
+            // Optionally, redirect or clear form
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          setErrors([{ msg: 'An unexpected error occurred. Please try again.' }]);
+        }
+      };
+
     return (
         <Container>
         <LoginDiv>
-            <LoginForm action="http://localhost:5000/signup" method="POST">
+            <LoginForm action="http://localhost:5000/signup" method="POST" onSubmit={handleSubmit}>
             <H1>Create an account</H1>
                 <inputDiv>
                 <EmailLabel isValid={emailValid} htmlFor="email">{emailLabel}<RedStar> *</RedStar></EmailLabel>

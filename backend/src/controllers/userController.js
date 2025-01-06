@@ -9,7 +9,7 @@ async function createUser(req,res,next)
         bcrypt.hash(req.body.password, 10, async(err,hashedPassword) => {
             if (err) return next(err);
             else {
-               let user =  await user_queries.createUser(req.body.email, req.body.display_name,req.body.username, hashedPassword);
+               let user =  await user_queries.createUser(req.body.email, req.body.display_name||req.body.username,req.body.username, hashedPassword);
 
                 res.status(200).json(user);
             }
