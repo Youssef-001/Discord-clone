@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import styled from 'styled-components';
 
 const RedStar = styled.span`
@@ -120,7 +120,7 @@ function Signup()
 
     const [errors, setErrors] = useState([]); // For backend validation errors
 
-
+    const inputRef = useRef(null); 
     const [usernameErrors, setUsernameErrors] = useState([]);
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [emailErrors, setEmailErrors] = useState([])
@@ -159,9 +159,15 @@ function Signup()
     };
     
 
-    function handlePasswordLabel(password){
+    function handlePasswordLabel(){
 
-
+    if (passwordErrors.length > 0)
+    {
+        inputRef.current.style.border="1px solid #e16e73"
+    }
+    else {
+         inputRef.current.style.border="1px solid #1E1F22"
+    }
         
 
     }
@@ -171,6 +177,9 @@ function Signup()
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]); // Clear previous errors
+        setPasswordErrors([]);
+        setEmailErrors([]);
+        setUsernameError([])
     
         try {
           const response = await fetch('http://localhost:5000/signup', {
@@ -220,6 +229,14 @@ function Signup()
           handleEmailLabel(); // Handle any label changes or other related tasks
         }}/>
 
+<PasswordError>
+    {emailErrors.map((err, index) => (
+      <DivError><svg width="1.2rem" height="1.2 rem" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e16e73" class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+    </svg>
+    <P key={index}>{err}</P></DivError>
+    ))}
+  </PasswordError>
                 </inputDiv>
                 <inputDiv>
 
@@ -232,11 +249,13 @@ function Signup()
                 <Label htmlFor="username">Username<RedStar> *</RedStar></Label>
                 <Input name="username" type="text" onChange={(e) => {setUsername(e.target.value); handleUsernameLabel(e.target.value)}} />
                 <UserSpan isValid={usernameIsValid}>{usernameError}</UserSpan>
+
+                
                 </inputDiv>
                 <inputDiv>
 
                 <PasswordLabel isValid={passwordValid} htmlFor="password">{passwordLabel}   </PasswordLabel>
-                <Input name="password" type="password" onChange={(e) => {setPassword(e.target.value); handlePasswordLabel(e.target.value)}} />
+                <Input  ref={inputRef}  name="password" type="password" onChange={(e) => {setPassword(e.target.value);}} />
 
 
                 {passwordErrors.length > 0 && (
@@ -246,9 +265,11 @@ function Signup()
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
     </svg>
     <P key={index}>{err}</P></DivError>
+    
     ))}
   </PasswordError>
 )}
+{handlePasswordLabel()}
        
                 </inputDiv>
          <Button type="submit">Continue</Button>
