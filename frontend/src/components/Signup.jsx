@@ -84,10 +84,21 @@ color: ${(props) => (props.isValid ? '#50905D':'#e16e73')}
 
 const PasswordLabel = styled.label`
 
-color: ${(props) => (props.isValid ? '#50905D':'#e16e73')}
+color: ${(props) => (props.isValid ? 'white':'#e16e73')}
+`
 
+const PasswordError = styled.div`
+margin: 0;;
+padding: 0;
+color: #e16e73;
 
 `
+
+const P = styled.p`
+margin:0.4rem;padding:0;`
+
+const DivError = styled.div`
+display:flex;align-items:center; gap:0.6rem; `
 
 const inputDiv = styled.div``
 function Signup()
@@ -108,6 +119,11 @@ function Signup()
 
 
     const [errors, setErrors] = useState([]); // For backend validation errors
+
+
+    const [usernameErrors, setUsernameErrors] = useState([]);
+    const [passwordErrors, setPasswordErrors] = useState([]);
+    const [emailErrors, setEmailErrors] = useState([])
 
 
     function validateMail(email)
@@ -146,22 +162,7 @@ function Signup()
     function handlePasswordLabel(password){
 
 
-        if (password == '')
-        {
-            setPasswordLabel('PASSWORD - Required');
-            // setPasswordValid(false)
-        }
-
-        if (password.length > 8)
-        {
-            // setPasswordValid(true);
-            setPasswordLabel('PASSWORD *');
-            
-        }
-        else {
-            // setPasswordValid(false);
-            setPasswordLabel('PASSWORD - Must be at least 8 characters long')
-        }
+        
 
     }
 
@@ -184,6 +185,17 @@ function Signup()
             const data = await response.json();
             if (data.errors) {
               setErrors(data.errors); // Set validation errors from backend
+              data.errors.forEach((err) => {
+                if (err.path === 'password') {
+                  setPasswordErrors((prevErrors) => [...prevErrors, err.msg]);
+                }
+                if (err.path === 'email') {
+                  setEmailErrors((prevErrors) => [...prevErrors, err.msg]);
+                }
+                if (err.path === 'username') {
+                  setUsernameError((prevErrors) => [...prevErrors, err.msg]);
+                }
+              });
             }
           } else {
             alert('Account created successfully!');
@@ -226,9 +238,20 @@ function Signup()
                 <PasswordLabel isValid={passwordValid} htmlFor="password">{passwordLabel}   </PasswordLabel>
                 <Input name="password" type="password" onChange={(e) => {setPassword(e.target.value); handlePasswordLabel(e.target.value)}} />
 
-                </inputDiv>
 
-                <Button type="submit">Continue</Button>
+                {passwordErrors.length > 0 && (
+  <PasswordError>
+    {passwordErrors.map((err, index) => (
+      <DivError><svg width="1.2rem" height="1.2 rem" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#e16e73" class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+    </svg>
+    <P key={index}>{err}</P></DivError>
+    ))}
+  </PasswordError>
+)}
+       
+                </inputDiv>
+         <Button type="submit">Continue</Button>
             <LoginLink href="/login">Already have an account</LoginLink>
             </LoginForm>
 
