@@ -166,15 +166,21 @@ function Signup()
   
 
     useEffect(() => {
-
-      if (isUnique && username.length >= 4)
+      console.log(username.length)
+    
+       if (!isUnique || (username.length < 4 ))
         {
             setUsernameIsValid(false);
             setUsernameError('Username is unavailable. Try adding numbers, letters, underscores _ , or periods.')
         }
+        else if (isUnique && username.length >= 4 )
+        {
+          setUsernameError('Username is avaliable, Nice!')
+          setUsernameIsValid(true);
+        }
         else {
             setUsernameIsValid(true);
-            setUsernameError('Username is avaliable. Nice!')
+            setUsernameError('')
         }
 
     }, [isUnique])
@@ -275,7 +281,7 @@ function Signup()
                 </InputDiv>
                 <InputDiv>
 
-                <PasswordLabel isValid={passwordValid} htmlFor="password">{passwordLabel}   </PasswordLabel>
+                <PasswordLabel isValid={passwordValid} htmlFor="password">Password  <RedStar>*</RedStar> </PasswordLabel>
                 <Input  ref={inputRef}  name="password" type="password" onChange={(e) => {setPassword(e.target.value);}} />
 
 

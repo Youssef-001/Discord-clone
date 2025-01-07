@@ -26,10 +26,10 @@ router.post('/checkUsername', async(req,res,next) => {
 
   if (!user)
   {
-    return res.status(400).json({error: 'username unavaliable', isUnique:false});
+    return res.status(200).json({error: 'username avaliable', isUnique:true});
   }
   else {
-    return res.status(200).json({success: 'username avaliable', isUnique:true});
+    return res.status(400).json({success: 'username unavaliable', isUnique:false});
   }
 
 
