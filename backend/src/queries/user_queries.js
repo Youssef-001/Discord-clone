@@ -18,15 +18,19 @@ async function createUser(email, display_name, username, password)
 }
 
 
-async function get_user(username)
-{
-    const user = await prisma.users.findUnique({
+async function get_user(username) {
+    const user = await prisma.users.findFirst({
         where: {
-            username:username
-        }
-    })
+            username: {
+                equals: username,
+                mode: "insensitive", // Ignore case
+            },
+        },
+    });
 
     return user;
 }
+
+
 
 module.exports = {createUser, get_user}

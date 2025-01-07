@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState, useRef} from 'react'
+import {useState, useRef, useEffect} from 'react'
 import styled from 'styled-components';
 
 const RedStar = styled.span`
@@ -100,7 +100,7 @@ margin:0.4rem;padding:0;`
 const DivError = styled.div`
 display:flex;align-items:center; gap:0.6rem; `
 
-const inputDiv = styled.div``
+const InputDiv = styled.div``
 function Signup()
 {
     const [email, setEmail] = useState('');
@@ -142,7 +142,26 @@ function Signup()
     }
 
 
-    
+    useEffect(() => {
+      const delayDebounceFn = setTimeout(() => {
+        if (username) {
+          checkUsername(username); // Call API after debounce
+        }
+      }, 500); // 500ms debounce time
+  
+      return () => clearTimeout(delayDebounceFn); // Cleanup
+    }, [username]);
+  
+    const checkUsername = async (username) => {
+      try {
+        const response = await fetch(`http://localhost/signup/checkUsername?username=${username}`);
+        const result = await response.json();
+        setIsUnique(result.isUnique);
+      } catch (error) {
+        console.error("Error checking username:", error);
+      } 
+    };
+  
 
    
 
@@ -161,14 +180,13 @@ function Signup()
 
     function handlePasswordLabel(){
 
-    if (passwordErrors.length > 0)
-    {
-        inputRef.current.style.border="1px solid #e16e73"
-    }
-    else {
-         inputRef.current.style.border="1px solid #1E1F22"
-    }
-        
+      if (inputRef.current) {
+        if (passwordErrors.length > 0) {
+          inputRef.current.style.border = "1px solid #e16e73";
+        } else {
+          inputRef.current.style.border = "1px solid #1E1F22";
+        }
+      } 
 
     }
 
@@ -221,7 +239,7 @@ function Signup()
         <LoginDiv>
             <LoginForm action="http://localhost:5000/signup" method="POST" onSubmit={handleSubmit}>
             <H1>Create an account</H1>
-                <inputDiv>
+                <InputDiv>
                 <EmailLabel isValid={emailValid} htmlFor="email">{emailLabel}<RedStar> *</RedStar></EmailLabel>
                 <Input name="email" type="email"    onChange={(e) => {
           setEmail(e.target.value); // Update the state with the email value
@@ -237,22 +255,22 @@ function Signup()
     <P key={index}>{err}</P></DivError>
     ))}
   </PasswordError>
-                </inputDiv>
-                <inputDiv>
+                </InputDiv>
+                <InputDiv>
 
                 <Label htmlFor="displayName">Display Name</Label>
                 <Input name="display_name" type="text" onChange={(e) => {setDisplayName(e.target.value)}}/>
 
-                </inputDiv>
+                </InputDiv>
 
-                <inputDiv>
+                <InputDiv>
                 <Label htmlFor="username">Username<RedStar> *</RedStar></Label>
                 <Input name="username" type="text" onChange={(e) => {setUsername(e.target.value); handleUsernameLabel(e.target.value)}} />
                 <UserSpan isValid={usernameIsValid}>{usernameError}</UserSpan>
 
                 
-                </inputDiv>
-                <inputDiv>
+                </InputDiv>
+                <InputDiv>
 
                 <PasswordLabel isValid={passwordValid} htmlFor="password">{passwordLabel}   </PasswordLabel>
                 <Input  ref={inputRef}  name="password" type="password" onChange={(e) => {setPassword(e.target.value);}} />
@@ -271,7 +289,7 @@ function Signup()
 )}
 {handlePasswordLabel()}
        
-                </inputDiv>
+                </InputDiv>
          <Button type="submit">Continue</Button>
             <LoginLink href="/login">Already have an account</LoginLink>
             </LoginForm>
