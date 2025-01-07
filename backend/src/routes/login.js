@@ -7,7 +7,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 require("dotenv").config();
-
+const cors = require('cors')
+router.use(cors());
 
 passport.use(
     new LocalStrategy(async(username, password, done) => {
@@ -42,7 +43,7 @@ router.post("/", passport.authenticate('local', { session: false }), async (req,
       }
   
       const access_token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-      res.json({ access_token });
+      res.json({ "access_token":access_token });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });

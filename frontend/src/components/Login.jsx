@@ -93,6 +93,42 @@ const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 
 
+async function login(e)
+{
+    e.preventDefault();
+    try{
+        let req = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+    console.log(req);
+    let reqJson = await req.json();
+    console.log(reqJson)
+    
+    if (reqJson.access_token)
+    {
+        console.log(reqJson)
+        localStorage.setItem('token', reqJson.access_token)
+    }
+
+    }
+
+    catch(err)
+    {
+        console.error('Failed to login');
+    }
+
+
+
+}
+
+
 
 return (
 
@@ -105,7 +141,7 @@ return (
         <p>We're so excited to see you again</p>
         </Greeting>
 
-        <Form action="http://localhost:5000/login" method="POST">
+        <Form action="http://localhost:5000/login" method="POST" onSubmit={login}>
 
         <FormElement>
             <Label htmlFor="username">Username <RedStar>*</RedStar></Label>
