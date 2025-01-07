@@ -125,6 +125,8 @@ function Signup()
     const [passwordErrors, setPasswordErrors] = useState([]);
     const [emailErrors, setEmailErrors] = useState([])
 
+    const [isUnique, setIsUnique] = useState(false)
+
 
     function validateMail(email)
     {
@@ -154,7 +156,7 @@ function Signup()
   
     const checkUsername = async (username) => {
       try {
-        const response = await fetch(`http://localhost/signup/checkUsername?username=${username}`);
+        const response = await fetch(`http://localhost:5000/signup/checkUsername?username=${username}`, {method:'POST'});
         const result = await response.json();
         setIsUnique(result.isUnique);
       } catch (error) {
@@ -163,19 +165,20 @@ function Signup()
     };
   
 
-   
+    useEffect(() => {
 
-    function handleUsernameLabel(username){
-        if (username.length < 3)
-            {
-                setUsernameIsValid(false);
-                setUsernameError('Username is unavailable. Try adding numbers, letters, underscores _ , or periods.')
-            }
-            else {
-                setUsernameIsValid(true);
-                setUsernameError('Username is avaliable. Nice!')
-            }
-    };
+      if (isUnique && username.length >= 4)
+        {
+            setUsernameIsValid(false);
+            setUsernameError('Username is unavailable. Try adding numbers, letters, underscores _ , or periods.')
+        }
+        else {
+            setUsernameIsValid(true);
+            setUsernameError('Username is avaliable. Nice!')
+        }
+
+    }, [isUnique])
+
     
 
     function handlePasswordLabel(){
