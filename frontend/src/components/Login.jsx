@@ -1,6 +1,7 @@
 import {useState} from 'react'
 
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const RedStar = styled.span`
 color: #AF5D65;`
@@ -93,7 +94,7 @@ color:#3F66F2
 
 function Login()
 {
-
+const navigate = useNavigate();
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 
@@ -119,7 +120,9 @@ async function login(e)
     if (reqJson.access_token)
     {
         console.log(reqJson)
-        localStorage.setItem('token', reqJson.access_token)
+        localStorage.setItem('token', reqJson.access_token);
+        navigate('/')
+
     }
 
     }
