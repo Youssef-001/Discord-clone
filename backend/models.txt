@@ -31,5 +31,7 @@ messages:
     channel rel 
     date 
 
-    
+
+
+POST /servers/:serverId/join
 

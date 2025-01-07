@@ -20,6 +20,8 @@ justify-content:center;
 margin-top: 10%;
 border: 2px solid white;
 width: 30%;
+background-color:#313338
+
 
 `
 
@@ -79,11 +81,14 @@ font-size: 1.1rem;
 
 const P = styled.p`
 color:#A1A1AA;stroke-width: 500;
-font-size: 1.1rem;`
+font-size: 1.1rem;
+text-align:center;
+
+`
 
 const A = styled.a`
 text-decoration: none;
-color;#816EA1
+color:#3F66F2
 `
 
 function Login()
@@ -155,7 +160,7 @@ return (
 
 
         <Button type="submit">Log In</Button>
-        <P>Need an account?    <A href="/login">Register</A></P>
+        <P>Need an account?    <A href="/signup">Register</A></P>
 
         </Form>
         </Div>

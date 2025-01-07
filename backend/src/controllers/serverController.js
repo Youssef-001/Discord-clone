@@ -1,3 +1,4 @@
+const { join } = require('@prisma/client/runtime/library');
 const server_queries = require('../queries/server_queries')
 
 async function createServer(req,res)
@@ -7,5 +8,14 @@ async function createServer(req,res)
     res.json(server);
 }
 
+async function joinServer(req,res)
+{
+    const serverId = req.params.serverId;
+    const userId = req.user.id;
 
-module.exports = {createServer,}
+    let updatedServer = await server_queries.joinServer(userId,serverId);
+    console.log(updatedServer)
+}
+
+
+module.exports = {createServer,joinServer}
