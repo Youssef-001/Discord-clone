@@ -27,4 +27,9 @@ router.post('/:serverId/join', authenticateToken, (req,res) => {
 
 })
 
+router.get('/user', authenticateToken, (req,res) => {
+    serverController.getUserServers(req,res);
+})
+
+
 module.exports = router;

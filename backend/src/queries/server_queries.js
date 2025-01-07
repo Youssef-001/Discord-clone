@@ -50,14 +50,20 @@ async function joinServer(userId, serverId) {
 }
 
 
-async function getUserServers(userId)
-{
-    let servers = await prisma.servers.findMany({
-        where: {userId: userId}
-    })
-
-    console.log(servers);
-    return servers;
-}
-
+async function getUserServers(userId) {
+    try {
+      let servers = await prisma.users.findUnique({
+        where: { id: userId },
+        select: {
+          memberOf: true,  // Select the related servers
+        },
+      });
+  
+      console.log(servers.memberOf);  // This will print the array of servers the user is a member of
+      return servers.memberOf;
+    } catch (error) {
+      console.error(error);
+      throw new Error('Failed to retrieve user servers');
+    }
+  }
 module.exports = {createServer,joinServer,getUserServers}

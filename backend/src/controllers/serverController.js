@@ -17,5 +17,11 @@ async function joinServer(req,res)
     console.log(updatedServer)
 }
 
+async function getUserServers(req,res)
+{
+    let servers = await server_queries.getUserServers(req.user.id);
+    res.json({servers});
+}
 
-module.exports = {createServer,joinServer}
+
+module.exports = {createServer,joinServer,getUserServers}
