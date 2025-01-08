@@ -1,7 +1,24 @@
 import {useEffect,useState} from 'react'
 import { jwtDecode } from "jwt-decode";
-
+import styled from 'styled-components'
 import DmBox from './DmBox'
+import AddServer from './AddServer'
+
+
+
+const Aside = styled.aside
+
+`
+
+display:flex;
+flex-direction:column;
+width: fit-content;
+justify-content:center;
+align-items:center;
+gap: 1rem;
+
+
+`
 
 function ServerBar()
 {
@@ -38,11 +55,11 @@ function ServerBar()
     }, []); 
 
 
-    return (<>
+    return (<Aside>
     <DmBox></DmBox>
-    <br></br>
+    <AddServer></AddServer>
 
-    </>)
+    </Aside>)
     
 }
 
