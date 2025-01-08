@@ -8,16 +8,17 @@ const authenticateToken = require('../middlewares/authenticateToken')
 const validateSender =  require('../middlewares/validateSender')
 
 // get user friends
-router.get('/:userId/friends', authenticateToken,(req,res) => {
+router.get('/friends', authenticateToken,(req,res) => {
+    friendsController.getFriends(req,res);
 })
 
 // get user pending requests
-router.get('/:userId/friend-requests?status=pending', authenticateToken,(req,res) => {
+router.get('/friend-requests?status=pending', authenticateToken,(req,res) => {
 })
 
 
 // add friend
-router.post('/:userId/friend-requests/:receiverId', authenticateToken,validateSender,(req,res,next) => {
+router.post('/friend-requests/:receiverId', authenticateToken,validateSender,(req,res,next) => {
 
 
 friendsController.addFriend(req,res,next);
@@ -25,7 +26,7 @@ friendsController.addFriend(req,res,next);
 })
 
 
-router.put('/:userId/friend-requests/:friendId',authenticateToken,validateSender,(req,res) => {
+router.put('/friend-requests/:friendId',authenticateToken,validateSender,(req,res) => {
 
 
     friendsController.acceptRequest(req,res);
@@ -33,7 +34,7 @@ router.put('/:userId/friend-requests/:friendId',authenticateToken,validateSender
 })
 
 
-router.delete('/:userId/friend-requests/:friendId',authenticateToken, (req,res) => {
+router.delete('/friend-requests/:friendId',authenticateToken, (req,res) => {
 
 })
 
