@@ -13,3 +13,5 @@ next();
 
 
 }
+
+module.exports = {addFriend}

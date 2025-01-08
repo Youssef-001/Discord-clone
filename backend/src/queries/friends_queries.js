@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function send_friend_request(senderId, recipientId) {
     try {
-      const friendRequest = await prismaClient.userFriends.create({
+      const friendRequest = await prisma.userFriends.create({
         data: {
           userId: senderId,
           friendId: recipientId,

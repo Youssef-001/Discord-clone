@@ -28,3 +28,5 @@ router.put('/:userId/friend-requests/:friendId',(req,res) => {})
 router.delete('/:userId/friend-requests/:friendId', (req,res) => {
 
 })
+
+module.exports = router;

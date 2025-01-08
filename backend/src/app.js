@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({
 const sign_up_router = require('./routes/sign-up');
 const login_router = require('./routes/login')
 const server_router = require('./routes/server')
+const requests_router = require('./routes/requests')
 
 app.get('/', (req,res) => {
     res.send('hi')
@@ -26,6 +27,8 @@ app.use('/signup', sign_up_router);
 app.use('/login', login_router)
 
 app.use('/server', server_router)
+
+app.use('/requests', requests_router);
 
 
 
