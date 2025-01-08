@@ -1,6 +1,8 @@
 import {useEffect,useState} from 'react'
 import { jwtDecode } from "jwt-decode";
 
+import DmBox from './DmBox'
+
 function ServerBar()
 {
     const [servers, setServers] = useState([])
@@ -36,7 +38,11 @@ function ServerBar()
     }, []); 
 
 
-    return (<>Welcome to home</>)
+    return (<>
+    <DmBox></DmBox>
+    <br></br>
+
+    </>)
     
 }
 
