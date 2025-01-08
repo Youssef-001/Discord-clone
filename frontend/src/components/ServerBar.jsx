@@ -4,7 +4,8 @@ import styled from "styled-components";
 import DmBox from "./DmBox";
 import AddServer from "./AddServer";
 import Discover from './Discover'
-
+import ServerBox from './ServerBox'
+import avatar from '../assets/avatar.jpeg';
 const Aside = styled.aside`
   display: flex;
   flex-direction: column;
@@ -71,6 +72,10 @@ function ServerBar() {
       <DmBox />
       <AddServer />
       <Discover />
+
+      {servers.map((server, index) => (
+          <ServerBox key={index} icon={avatar} />
+        ))}
 
       </Items>
     </Aside>

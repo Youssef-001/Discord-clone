@@ -13,7 +13,9 @@ const D = styled.button`
   display:inline-block;
   transition: background-color 0.3s ease;
     transition: border-radius 0.2s ease;
-
+        display:flex;
+    justify-content:center;
+    align-items:center;
   background-color: #313338;
 
   &:hover {

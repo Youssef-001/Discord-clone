@@ -10,6 +10,9 @@ border-radius: 50%;
   display:inline-block;
     transition: background-color 0.3s ease;
     transition: border-radius 0.2s ease;
+        display:flex;
+    justify-content:center;
+    align-items:center;
 
 
 &:hover{
