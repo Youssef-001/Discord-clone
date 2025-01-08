@@ -31,6 +31,20 @@ async function get_user(username) {
     return user;
 }
 
+async function send_friend_request(senderId, recipientId) {
+    try {
+      const friendRequest = await prismaClient.userFriends.create({
+        data: {
+          userId: senderId,
+          friendId: recipientId,
+        },
+      });
+  
+      console.log('Friend request sent:', friendRequest);
+      return friendRequest;
+    } catch (error) {
+      console.error('Error sending friend request:', error);
+    }
+  }
 
-
-module.exports = {createUser, get_user}
+module.exports = {createUser, get_user, send_friend_request}
