@@ -6,7 +6,7 @@ import AddServer from "./AddServer";
 import Discover from './Discover'
 import ServerBox from './ServerBox'
 import avatar from '../assets/avatar.jpeg';
-const Aside = styled.aside`
+const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -15,9 +15,7 @@ const Aside = styled.aside`
   height: 100vh;
   background-color: #1e1f22;
   overflow: hidden; /* Prevents any overflow and hides the scrollbar */
-  position:absolute;
-  left: 0;
-  top: 0;
+
   padding-right: 1rem;
   padding-left: 1rem;
 
@@ -67,7 +65,7 @@ function ServerBar() {
   }, []);
 
   return (
-    <Aside>
+    <Nav>
       <Items>
       <DmBox />
       <AddServer />
@@ -78,7 +76,7 @@ function ServerBar() {
         ))}
 
       </Items>
-    </Aside>
+    </Nav>
   );
 }
 

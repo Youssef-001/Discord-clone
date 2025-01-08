@@ -35,14 +35,26 @@ padding: 0.8rem;
 
 `
 
+const Br = styled.div`
+
+margin:0 ;
+padding: 0;
+width: 100%;
+height: 100%;
+border-top: 2px solid #36373C;
+
+`
+
 function Discover()
 {
 
     return (
-
+<>
         <Button>
             <Img src={logo} />
         </Button>
+        <Br></Br>
+        </>      
     )
 
 }
