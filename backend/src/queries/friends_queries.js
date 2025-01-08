@@ -66,12 +66,15 @@ async function send_friend_request(senderId, recipientId) {
 
   async function accept_friend_request(senderId, recipientId) {
     try {
-      const updatedRequest = await prismaClient.userFriends.update({
+      const updatedRequest = await prisma.userFriends.update({
         where: {
-          userId_friendId: { userId: senderId, friendId: recipientId },
-        },
+            userId_friendId: {
+              userId: recipientId,
+              friendId: senderId,
+            },
+          },
         data: {
-          status: 'ACCEPTED',
+          status: 'ACCEPTED',   
         },
       });
   

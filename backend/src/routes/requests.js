@@ -25,7 +25,12 @@ friendsController.addFriend(req,res,next);
 })
 
 
-router.put('/:userId/friend-requests/:friendId',authenticateToken,(req,res) => {})
+router.put('/:userId/friend-requests/:friendId',authenticateToken,validateSender,(req,res) => {
+
+
+    friendsController.acceptRequest(req,res);
+
+})
 
 
 router.delete('/:userId/friend-requests/:friendId',authenticateToken, (req,res) => {

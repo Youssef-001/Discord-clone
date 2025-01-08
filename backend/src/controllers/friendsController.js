@@ -14,4 +14,15 @@ next();
 
 }
 
-module.exports = {addFriend}
+
+async function acceptRequest(req,res) 
+{
+    let sender = req.params.userId;
+    let friend = req.params.friendId;
+
+    let request = await friends_queries.accept_friend_request(sender,friend);
+
+    console.log(request)
+}
+
+module.exports = {addFriend,acceptRequest}
