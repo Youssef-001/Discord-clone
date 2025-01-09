@@ -21,9 +21,32 @@ const Div = styled.div`
   align-items: center;
 `;
 
-const Img = styled.img`
+const ImgContainer = styled.div`
+  position: relative;
   width: 3rem;
   height: 3rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: ${({ status }) =>
+      status === 'ONLINE' ? '#539751' :
+      status === 'INVISIBLE' ? '#71747D' :
+      status === 'IDLE' ? '#E4A92F' :
+      status === 'DND' ? '#CA443A' :
+      'transparent'}; /* Default to transparent if no status matches */
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 `;
 
@@ -39,7 +62,9 @@ function FriendCard({ avatar = logo, name, status }) {
     <>
       <GlobalStyle />
       <Div>
-        <Img src={logo} alt="" />
+        <ImgContainer status={status}>
+          <Img src={logo} alt="" />
+        </ImgContainer>
         <P>{name}</P>
       </Div>
     </>
