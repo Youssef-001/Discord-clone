@@ -4,10 +4,13 @@ import {useEffect,useState} from 'react'
 import FriendCard from './FriendCard'
 import FriendsIcon from './FriendsIcon'
 import FriendsHome from './FriendsHome'
+import ProfileSection from './ProfileSection'
+import {jwtDecode} from 'jwt-decode'
 const Aside = styled.aside`
 
 height: 100vh;
 background-color: #2B2D31;
+position:relative;
 
 
 
@@ -33,8 +36,9 @@ const FriendsSection = styled.div`margin-top: 2rem;`;
 
 function Friends()
 {
+    const token = localStorage.getItem('token');
+    const user = jwtDecode(token);
     const [friends,setFriends] = useState([]);
-    let token = localStorage.getItem('token');
 
     useEffect(() => {
 
@@ -70,6 +74,8 @@ function Friends()
 
 
         </FriendsDiv>
+        <ProfileSection name={user.display_name} status={user.status}/>
+
         </Aside>
 
         <FriendsHome friends={friends}/>

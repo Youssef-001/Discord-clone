@@ -62,7 +62,7 @@ const Img = styled.img`
 `;
 
 const P = styled.p`
-  color: #949BA4;
+  color: #9196A0;
   font-family: 'Proxima Nova', Verdana, sans-serif; /* Fallback fonts */
   font-size: 1.1rem;
   font-weight: 600;
