@@ -18,11 +18,11 @@ const Button = styled.button`
 all:unset;
   display: flex;
   gap: 10px;
-  justify-content: center;
   align-items: center;
   width: 100%;
   padding: 8px;
   border-radius: 8px;
+  cursor:pointer;
   
 
     &:hover{

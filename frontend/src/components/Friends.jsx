@@ -72,7 +72,7 @@ function Friends()
         </FriendsDiv>
         </Aside>
 
-        <FriendsHome/>
+        <FriendsHome friends={friends}/>
 
         </>
 
