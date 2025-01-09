@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import logo from '../assets/friend.svg';
+import {useEffect,useState} from 'react'
 
+import FriendCard from './FriendCard'
 const Aside = styled.aside`
 
 height: 100vh;
@@ -56,11 +58,30 @@ font-family: Helvetica;
 
 
 `
-
+const FriendsSection = styled.div`margin-top:2rem`;
 
 const P = styled.p`color:#caccce; font-size: 18px; font-weight:  500; line-weight: 20px; font-family:Helvetica`
 function Friends()
 {
+    const [friends,setFriends] = useState([]);
+    let token = localStorage.getItem('token');
+
+    useEffect(() => {
+
+        async function getUserFriends()
+        {
+            let req = await fetch('http://localhost:5000/requests/friends', {headers: {Authorization: `Bearer ${token}`}});
+            let friends = await req.json();
+            setFriends(friends.friends);
+            console.log(friends.friends);
+
+        }
+
+        getUserFriends();
+
+    },[])
+
+
     return (
 
         <Aside>
@@ -72,7 +93,16 @@ function Friends()
         </D>
 
         <P2>DIRECT MESSAGES</P2>
+
+        <FriendsSection>
+
+        </FriendsSection>
         
+        {friends.map((friend, index) => (
+          <FriendCard key={index} name={friend.friend.display_name} status={friend.friend.status} />
+        ))}
+
+
         </FriendsDiv>
         </Aside>
 

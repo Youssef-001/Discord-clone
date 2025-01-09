@@ -27,8 +27,10 @@ async function acceptRequest(req,res)
 
 async function getFriends(req,res)
 {
-    let user = req.user.id;
+    let userId = req.user.id;
+    let friends = await friends_queries.get_friends(userId)
+    res.json({friends})
 
 }
 
-module.exports = {addFriend,acceptRequest}
+module.exports = {addFriend,acceptRequest, getFriends}
