@@ -14,11 +14,20 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Div = styled.div`
+const Button = styled.button`
+all:unset;
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  
+
+    &:hover{
+  background-color:#35383C
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -42,6 +51,8 @@ const ImgContainer = styled.div`
     right: 0;
     z-index: 1;
   }
+
+
 `;
 
 const Img = styled.img`
@@ -61,12 +72,12 @@ function FriendCard({ avatar = logo, name, status }) {
   return (
     <>
       <GlobalStyle />
-      <Div>
+      <Button>
         <ImgContainer status={status}>
           <Img src={logo} alt="" />
         </ImgContainer>
         <P>{name}</P>
-      </Div>
+      </Button>
     </>
   );
 }
