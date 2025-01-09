@@ -20,8 +20,8 @@ margin-left:auto;
 margin-right: 5px;
 width: 3rem;
  height: 3rem;
- color:white;
  cursor:pointer;
+ fill:#313338;
    &:hover {
     transition: transform 0.8s ease;
     transform: rotate(180deg); /* Rotate on hover */

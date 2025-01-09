@@ -6,7 +6,7 @@ const HomeDiv = styled.div`
 
 display:grid;
 
-grid-template-columns: auto auto 1fr;
+grid-template-columns: auto 1fr 6fr;
 
 `
 function Home()

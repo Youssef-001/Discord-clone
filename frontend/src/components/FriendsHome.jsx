@@ -8,7 +8,7 @@ const Main = styled.main`
 
 const Button = styled.button`
   all: unset;
-  color: #76919D;
+  color: #949BA4;
   border-radius: 4px;
   padding: 2px 8px; /* Add horizontal padding if needed */
   margin: 0;
