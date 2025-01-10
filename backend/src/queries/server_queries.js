@@ -4,11 +4,12 @@ const prisma = new PrismaClient();
 
 
 
-async function createServer(name, ownerId)
+async function createServer(name, avatar, ownerId)
 {
     let server = await prisma.servers.create({
         data: {
             name:name,
+            avatar: avatar,
             ownerId: ownerId
         }
     })

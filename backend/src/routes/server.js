@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const authenticateToken = require('../middlewares/authenticateToken.js')
+const multer = require('multer');
+const storage = multer.memoryStorage();  // This will store files in memory as buffers
+const upload = multer({ storage: storage });
 
 const serverController = require('../controllers/serverController.js')
 const channelController = require('../controllers/channelController.js')
 const messageController = require('../controllers/messageController.js')
 
 
-router.post('/create', authenticateToken,(req,res) => {
+router.post('/create',upload.single('avatar') ,authenticateToken,(req,res) => {
     serverController.createServer(req,res)
 })
 

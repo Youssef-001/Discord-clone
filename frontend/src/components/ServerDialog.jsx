@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import icon from '../assets/camera-svgrepo-com.svg'
+import {useState} from 'react'
 const ServerDialogS = styled.div`
   position: absolute;
   top: 25%;
@@ -118,10 +119,38 @@ all:unset;
 `
 
 export default function ServerDialog({serverDialoge,setServerDialoge}) {
-  async function handleServerCreate(e) {
-    e.preventDefault();
-    console.log('Server created!');
-  }
+
+    const [serverName, setServerName] = useState('');
+    const [avatar, setAvatar] = useState(null);
+
+    const token = localStorage.getItem('token');
+    async function handleServerCreate(e) {
+        e.preventDefault();
+      
+        // Create a new FormData instance
+        const form = new FormData();
+      
+        // Append server name and avatar to the form
+        form.append('name', serverName);
+        form.append('avatar', avatar);
+      
+        try {
+          const response = await fetch('http://localhost:5000/server/create', {
+            method: 'POST',
+            body: form,
+            headers: {Authorization: `Bearer ${token}`}
+          });
+      
+          const jsonRequest = await response.json();
+      
+          console.log(jsonRequest);
+        } catch (error) {
+          console.error('Error creating server:', error);
+        }
+      }
+  const handleFileChange = (e) => {
+    setAvatar(e.target.files[0]);
+  };
 
   return (
     <ServerDialogS>
@@ -135,7 +164,7 @@ export default function ServerDialog({serverDialoge,setServerDialoge}) {
       <FORM action="" method="POST">
         <AvatarDiv>
           <StyledLabel htmlFor="avatar"><IMG src={icon} alt="" /><p>UPLOAD</p></StyledLabel>
-          <FileInput type="file" name="avatar" id="avatar" />
+          <FileInput type="file" name="avatar" id="avatar" onChange={handleFileChange}/>
         </AvatarDiv>
 
         <D>
@@ -145,6 +174,8 @@ export default function ServerDialog({serverDialoge,setServerDialoge}) {
           <input
             type="text"
             name="name"
+            value={serverName}
+            onChange={(e) => {setServerName(e.target.value)}}
             style={{
               backgroundColor: '#202225',
               color: 'white',
@@ -158,7 +189,7 @@ export default function ServerDialog({serverDialoge,setServerDialoge}) {
 
         <D2>
           <ButtonBack type="button" onClick={() => {setServerDialoge(!serverDialoge)}}>Back</ButtonBack>
-          <Button type="submit" onClick={handleServerCreate}>
+          <Button onChange={(e) => {setServerName(e.target.value)}} type="submit" onClick={handleServerCreate}>
             Create
           </Button>
         </D2>
