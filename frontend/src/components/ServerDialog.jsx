@@ -117,7 +117,7 @@ all:unset;
 
 `
 
-export default function ServerDialog() {
+export default function ServerDialog({serverDialoge,setServerDialoge}) {
   async function handleServerCreate(e) {
     e.preventDefault();
     console.log('Server created!');
@@ -157,7 +157,7 @@ export default function ServerDialog() {
         </D>
 
         <D2>
-          <ButtonBack type="button">Back</ButtonBack>
+          <ButtonBack type="button" onClick={() => {setServerDialoge(!serverDialoge)}}>Back</ButtonBack>
           <Button type="submit" onClick={handleServerCreate}>
             Create
           </Button>

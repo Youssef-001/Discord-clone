@@ -25,7 +25,7 @@ function Home() {
 
       {/* Dialog */}
       </HomeDiv>
-      {createServerDialoge && <ServerDialog />}
+      {createServerDialoge && <ServerDialog serverDialoge={createServerDialoge} setServerDialoge={setCreateServerDialoge} />}
 
     </>
   );
