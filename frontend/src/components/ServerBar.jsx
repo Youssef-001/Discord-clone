@@ -31,7 +31,7 @@ margin-top: 1rem;
 
 `
 
-function ServerBar() {
+function ServerBar({serverDialog,setDialog}) {
   const [servers, setServers] = useState([]);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ function ServerBar() {
     <Nav>
       <Items>
       <DmBox />
-      <AddServer />
+      <AddServer serverDialog={serverDialog} setServerDialog={setDialog} />
       <Discover />
 
       {servers.map((server, index) => (
