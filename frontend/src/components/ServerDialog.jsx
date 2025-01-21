@@ -118,7 +118,7 @@ all:unset;
 
 `
 
-export default function ServerDialog({serverDialoge,setServerDialoge}) {
+export default function ServerDialog({serverDialoge,setServerDialoge, servers, setServers}) {
 
     const [serverName, setServerName] = useState('');
     const [avatar, setAvatar] = useState(null);
@@ -142,7 +142,7 @@ export default function ServerDialog({serverDialoge,setServerDialoge}) {
           });
       
           const jsonRequest = await response.json();
-      
+          setServers([...servers, jsonRequest])
           console.log(jsonRequest);
         } catch (error) {
           console.error('Error creating server:', error);

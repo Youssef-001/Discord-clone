@@ -12,6 +12,7 @@ const HomeDiv = styled.div`
 
 function Home() {
   const [createServerDialoge, setCreateServerDialoge] = useState(false);
+  const [servers, setServers] = useState([]);
 
   return (
     <>
@@ -19,13 +20,16 @@ function Home() {
         <ServerBar
           serverDialog={createServerDialoge}
           setDialog={setCreateServerDialoge}
+          servers = {servers}
+          setServers={setServers}
         ></ServerBar>
         <Friends></Friends>
       {/* Overlay */}
 
       {/* Dialog */}
       </HomeDiv>
-      {createServerDialoge && <ServerDialog serverDialoge={createServerDialoge} setServerDialoge={setCreateServerDialoge} />}
+      {createServerDialoge && <ServerDialog serverDialoge={createServerDialoge} setServerDialoge={setCreateServerDialoge}           servers = {servers}
+          setServers={setServers}/>}
 
     </>
   );

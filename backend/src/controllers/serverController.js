@@ -15,7 +15,7 @@ async function joinServer(req,res)
     const userId = req.user.id;
 
     let updatedServer = await server_queries.joinServer(userId,serverId);
-    console.log(updatedServer)
+    res.json(updatedServer)
 }
 
 async function getUserServers(req,res)

@@ -31,9 +31,9 @@ margin-top: 1rem;
 
 `
 
-function ServerBar({serverDialog,setDialog}) {
-  const [servers, setServers] = useState([]);
+function ServerBar({serverDialog,setDialog, servers, setServers}) {
 
+  console.log(servers);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -52,6 +52,7 @@ function ServerBar({serverDialog,setDialog}) {
         const servers = await fetch("http://localhost:5000/server/user", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(servers)
 
         const serversJson = await servers.json();
         setServers(serversJson.servers);
@@ -72,7 +73,7 @@ function ServerBar({serverDialog,setDialog}) {
       <Discover />
 
       {servers.map((server, index) => (
-          <ServerBox key={index} icon={avatar} />
+          <ServerBox key={index} avatarBuffer={server.avatar} />
         ))}
 
       </Items>
