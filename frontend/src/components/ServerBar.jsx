@@ -31,9 +31,9 @@ margin-top: 1rem;
 
 `
 
-function ServerBar({serverDialog,setDialog}) {
+function ServerBar({serverDialog,setDialog, servers, setServers}) {
 
-  const [servers,setServers] = useState([]);
+  console.log(servers);
   useEffect(() => {
     const fetchData = async () => {
       try {
