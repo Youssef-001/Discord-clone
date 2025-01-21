@@ -31,9 +31,9 @@ margin-top: 1rem;
 
 `
 
-function ServerBar({serverDialog,setDialog, servers, setServers}) {
+function ServerBar({serverDialog,setDialog}) {
 
-  console.log(servers);
+  const [servers,setServers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,7 +73,7 @@ function ServerBar({serverDialog,setDialog, servers, setServers}) {
       <Discover />
 
       {servers.map((server, index) => (
-          <ServerBox key={index} avatarBuffer={server.avatar} />
+          <ServerBox key={index} avatar={server.avatar} />
         ))}
 
       </Items>

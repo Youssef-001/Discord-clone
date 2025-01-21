@@ -4,7 +4,7 @@ const server_queries = require('../queries/server_queries')
 async function createServer(req,res)
 {
     const avatar = req.file;
-    const server = await server_queries.createServer(req.body.name, avatar.buffer, req.user.id);
+    const server = await server_queries.createServer(req.body.name, avatar.filename, req.user.id);
     console.log(server);
     res.json(server);
 }

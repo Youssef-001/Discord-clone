@@ -21,6 +21,7 @@ const requests_router = require('./routes/requests')
 app.get('/', (req,res) => {
     res.send('hi')
 })
+const uploadsPath = path.join(__dirname, "../uploads");
 
 app.use('/signup', sign_up_router);
 
@@ -30,6 +31,7 @@ app.use('/server', server_router)
 
 app.use('/requests', requests_router);
 
+app.use("/uploads", express.static(uploadsPath));
 
 
 app.use((err, req, res, next) => {

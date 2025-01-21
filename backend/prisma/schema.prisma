@@ -21,7 +21,7 @@ email String @unique
 display_name String 
 username String @unique
 password String @unique
-avatar        String
+avatar        String?
 status Status @default(ONLINE)
 createdAt DateTime @default(now())
 memberOf Servers[]  @relation("UserServers")
@@ -51,7 +51,7 @@ model UserFriends {
 model Servers {
   id String @id @default(uuid())
   name String 
-  avatar String
+  avatar String?
   members Users[] @relation("UserServers")
   channels Channels[]
   ownerId    String   // Foreign key to the user who owns the server
