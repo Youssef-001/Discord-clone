@@ -6,6 +6,9 @@ async function createServer(req,res)
     const avatar = req.file;
     const server = await server_queries.createServer(req.body.name, avatar.filename, req.user.id);
     console.log(server);
+
+    let joinServerRequest = await fetch(`http://localhost:5000/server/${server.id}/join`,  {method:'POST',headers: {Authorization: `Bearer ${req.body.token}`}})
+
     res.json(server);
 }
 

@@ -122,6 +122,7 @@ export default function ServerDialog({serverDialoge,setServerDialoge, servers, s
 
     const [serverName, setServerName] = useState('');
     const [avatar, setAvatar] = useState(null);
+    
 
     const token = localStorage.getItem('token');
     async function handleServerCreate(e) {
@@ -133,6 +134,7 @@ export default function ServerDialog({serverDialoge,setServerDialoge, servers, s
         // Append server name and avatar to the form
         form.append('name', serverName);
         form.append('avatar', avatar);
+        form.append('token', token)
       
         try {
           const response = await fetch('http://localhost:5000/server/create', {
