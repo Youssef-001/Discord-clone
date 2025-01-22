@@ -8,9 +8,10 @@ import { jwtDecode } from "jwt-decode";
 
 const HomeDiv = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr 6fr;
+  grid-template-columns: ${(props) => 
+    props.view === "DISCOVER" ? "auto 1fr" : "auto 1fr 6fr"};
   opacity: ${(props) => (props.serverDialog ? 0.3 : 1)};
-  transition: opacity 0.3s ease; /* Smooth transition effect */
+  transition: opacity 0.3s ease, grid-template-columns 0.3s ease; /* Smooth transition effect */
 `;
 
 function Home() {
@@ -22,7 +23,7 @@ function Home() {
 
   return (
     <>
-      <HomeDiv serverDialog={createServerDialoge}> 
+      <HomeDiv view={section} serverDialog={createServerDialoge}> 
         <ServerBar
           serverDialog={createServerDialoge}
           setDialog={setCreateServerDialoge}
