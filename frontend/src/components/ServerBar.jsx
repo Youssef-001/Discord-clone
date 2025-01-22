@@ -12,7 +12,7 @@ const Nav = styled.nav`
   width: fit-content;
   align-items: center;
   gap: 1rem;
-  height: 100%;
+  height: 100vh;
   background-color: #1e1f22;
   overflow: hidden; /* Prevents any overflow and hides the scrollbar */
 

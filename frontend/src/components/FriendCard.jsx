@@ -26,8 +26,13 @@ all:unset;
   
 
     &:hover{
-  background-color:#35383C
+  background-color:#35383C;
+
+  
   }
+
+
+  
 `;
 
 const ImgContainer = styled.div`
@@ -68,7 +73,63 @@ const P = styled.p`
   font-weight: 600;
 `;
 
-function FriendCard({ avatar = logo, name, status }) {
+const SVG = styled.svg`width: 2rem; height: 2rem; color:white;`
+
+const AcceptButton = styled.button`
+
+all:unset;
+border-radius: 50%;
+background-color: #2B2D31;
+padding: 0.3rem;
+
+&:hover{
+ svg {
+      color: #529552; /* Change the color of the SVG */
+}}
+
+svg{
+color:#fff}
+`
+
+const DeclineButton = styled.button`
+
+all:unset;
+border-radius: 50%;
+background-color: #2B2D31;
+padding: 0.3rem;
+
+&:hover{
+ svg {
+      color: #529552; /* Change the color of the SVG */
+}}
+
+svg{
+color:#fff}
+`
+
+function PendingControls()
+{
+  return (
+    <div style={{marginLeft:'auto', display:'flex', gap: '1rem'}}>
+<AcceptButton>
+          <SVG xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+</SVG>
+
+        </AcceptButton>
+
+        <DeclineButton>
+        <SVG xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+</SVG>
+
+        </DeclineButton>
+
+    </div>
+  )
+}
+
+function FriendCard({ avatar = logo, name, status, isPending }) {
   return (
     <>
       <GlobalStyle />
@@ -77,6 +138,7 @@ function FriendCard({ avatar = logo, name, status }) {
           <Img src={logo} alt="" />
         </ImgContainer>
         <P>{name}</P>
+        {isPending ? <PendingControls style={{marginLeft:'3rem'}}></PendingControls> : null}
       </Button>
     </>
   );

@@ -83,12 +83,11 @@ background-color: #313338
 `
 
 const FriendsDiv = styled.div`
-
+display:flex;
+flex-direction:column;
+gap: 1em;
 margin-top: 3rem;
-&:hover{
-background-color:#393C41;
-border-radius: 8px;
-}
+
 `
 
 
@@ -112,6 +111,7 @@ function filterFriends( friends, filter ) {
           key={index}
           name={friend.friend.display_name}
           status={friend.friend.status}
+          isPending={friend.status == "PENDING" ? true : false}
         />
       ))}
     </>

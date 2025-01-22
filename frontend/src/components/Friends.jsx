@@ -68,8 +68,6 @@ function Friends()
 
         <FriendsSection>
 
-        </FriendsSection>
-        
         {friends
   .filter(friend => friend.status === 'ACCEPTED') // Filter friends with status "ACCEPTED"
   .map((friend, index) => (
@@ -79,6 +77,10 @@ function Friends()
       status={friend.friend.status}
     />
   ))}
+        </FriendsSection>
+
+
+        
 
 
         </FriendsDiv>
