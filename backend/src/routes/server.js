@@ -11,7 +11,7 @@ const messageController = require('../controllers/messageController.js')
 
 
 router.post('/create',upload.single('avatar') ,authenticateToken,(req,res) => {
-    serverController.createServer(req,res)
+    serverController.createServer(req,res);
 })
 
 router.post('/:serverId/channel', authenticateToken, (req,res) => {

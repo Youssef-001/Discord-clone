@@ -11,13 +11,20 @@ flex-wrap:wrap;
 margin-top: 7rem;
 
 `
-const ServerCard = styled.div``;
+const ServerCard = styled.div`padding:2rem;width: 300px;
+`;
 
 
 const IMG = styled.img`
 
-width: 200px;
-objec-type:cover;
+width: 100%;
+
+`
+const IMG2 = styled.img`
+
+width: 4rem;
+border-radius: 35%;
+
 
 `
 
@@ -51,7 +58,10 @@ text-align:center;
 const P2 = styled.p`color:#9CA6D7;padding:1rem;
 `
 const P = styled.p`
-color:#DBDEE1;`
+color:#DBDEE1;
+font-weight: 600;
+font-size: 1.2rem;
+`
 
 function DiscoverServers({servers})
 {
@@ -72,7 +82,14 @@ return (
             <ServerCard>
                 
                 <IMG src={baseUrl+server.avatar} alt="" />
+                <div style={{backgroundColor:'#232428', padding:'1rem', width:'275px'}}>
+                <IMG2 src={baseUrl+server.avatar} alt="" />
+                <div style={{display:'flex', flexDirection:'column', gap: '1rem'}}>
                 <P>{server.name}</P>
+                <P>Welcome to Teyvat, Traveler! This is the place to discuss with others about your favorite game: Genshin Impact!</P>
+
+                </div>
+                </div>
             </ServerCard>
         ))}
 

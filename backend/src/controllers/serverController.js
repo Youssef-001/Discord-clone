@@ -1,5 +1,6 @@
 const { join } = require('@prisma/client/runtime/library');
-const server_queries = require('../queries/server_queries')
+const server_queries = require('../queries/server_queries');
+const channelController = require('../controllers/channelController')
 
 async function createServer(req,res)
 {
@@ -8,6 +9,8 @@ async function createServer(req,res)
     console.log(server);
 
     let joinServerRequest = await fetch(`http://localhost:5000/server/${server.id}/join`,  {method:'POST',headers: {Authorization: `Bearer ${req.body.token}`}})
+    let channel = await fetch(`http://localhost:5000/server/${server.id}/channel`, {method:'POST', headers:{Authorization:`Bearer ${req.body.token}`}})
+
 
     res.json(server);
 }
