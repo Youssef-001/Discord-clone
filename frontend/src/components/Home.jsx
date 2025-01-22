@@ -1,8 +1,11 @@
 import ServerBar from './ServerBar'
 import Friends from './Friends'
 import styled from 'styled-components'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import ServerDialog from './ServerDialog'
+import DiscoverServers from './DiscoverServers'
+import { jwtDecode } from "jwt-decode";
+
 const HomeDiv = styled.div`
   display: grid;
   grid-template-columns: auto 1fr 6fr;
@@ -13,6 +16,9 @@ const HomeDiv = styled.div`
 function Home() {
   const [createServerDialoge, setCreateServerDialoge] = useState(false);
   const [servers, setServers] = useState([]);
+  const [section, setSection] = useState('HOME');
+
+
 
   return (
     <>
@@ -22,8 +28,9 @@ function Home() {
           setDialog={setCreateServerDialoge}
           servers = {servers}
           setServers={setServers}
+          setSection={setSection}
         ></ServerBar>
-        <Friends></Friends>
+        {section == "HOME" ? <Friends></Friends> : <DiscoverServers servers={servers}></DiscoverServers>}
       {/* Overlay */}
 
       {/* Dialog */}

@@ -33,10 +33,10 @@ const Img = styled.img`
   height: 2rem;
 `
 
-function DmBox() {
+function DmBox({setSection}) {
   return (
     <>
-      <D>
+      <D onClick={() => {setSection('HOME')}}>
         <Img src={logo} alt="Logo" />
       </D>
     </>

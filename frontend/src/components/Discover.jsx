@@ -45,12 +45,12 @@ border-top: 2px solid #36373C;
 
 `
 
-function Discover()
+function Discover({setSection})
 {
 
     return (
 <>
-        <Button>
+        <Button onClick={(e) => {setSection('DISCOVER')}}>
             <Img src={logo} />
         </Button>
         <Br></Br>

@@ -31,9 +31,8 @@ margin-top: 1rem;
 
 `
 
-function ServerBar({serverDialog,setDialog, servers, setServers}) {
+function ServerBar({serverDialog,setDialog, servers, setServers,setSection}) {
 
-  console.log(servers);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -68,9 +67,9 @@ function ServerBar({serverDialog,setDialog, servers, setServers}) {
   return (
     <Nav>
       <Items>
-      <DmBox />
+      <DmBox setSection={setSection}/>
       <AddServer serverDialog={serverDialog} setServerDialog={setDialog} />
-      <Discover />
+      <Discover setSection={setSection} />
 
       {servers.map((server, index) => (
           <ServerBox key={index} avatar={server.avatar} />
