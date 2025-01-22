@@ -40,6 +40,7 @@ function Friends()
     const user = jwtDecode(token);
     const [friends,setFriends] = useState([]);
 
+
     useEffect(() => {
 
         async function getUserFriends()

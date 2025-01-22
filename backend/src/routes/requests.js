@@ -13,12 +13,17 @@ router.get('/friends', authenticateToken,(req,res) => {
 })
 
 // get user pending requests
-router.get('/friend-requests?status=pending', authenticateToken,(req,res) => {
-})
+router.get("/friend-requests", authenticateToken, (req, res) => {
+    if (req.query.status === "pending") {
+      friendsController.getUserPendingRequests(req, res);
+    } else {
+      res.status(400).json({ error: "Invalid or missing 'status' query parameter" });
+    }
+  });
 
 
 // add friend
-router.post('/friend-requests/:receiverId', authenticateToken,validateSender,(req,res,next) => {
+router.post('/friend-requests/:receiverId', authenticateToken,(req,res,next) => {
 
 
 friendsController.addFriend(req,res,next);

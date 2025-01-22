@@ -1,8 +1,8 @@
 function validateSender(req, res, next) {
-    const sender = req.params.userId;
+    const sender = req.params.receiverId;
     const user = req.user?.id;
 
-    if (!user || sender !== user) {
+        if (!user || sender !== user) {
         return res.status(403).json({ error: "Unauthorized: Invalid user identity" });
     }
 

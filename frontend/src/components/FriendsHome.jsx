@@ -1,6 +1,7 @@
 import FriendsIcon from './FriendsIcon';
 import styled from 'styled-components';
 import FriendCard from './FriendCard';
+import {useState} from 'react'
 const Main = styled.main`
   display: grid;
   grid-template-rows: auto 1fr;
@@ -91,6 +92,8 @@ border-radius: 8px;
 `
 
 function FriendsHome({friends}) {
+  const [section, setSection] = useState('ONLINE');
+
   return (
     <Main>
       <Div>
@@ -98,10 +101,10 @@ function FriendsHome({friends}) {
           <FriendsIcon />
         </div>
 
-        <Button>Online</Button>
-        <Button>All</Button>
-        <Button>Pending</Button>
-        <Button2>Add Friend</Button2>
+        <Button onClick={(e) => {setSection('ONLINE')}}>Online</Button>
+        <Button onClick={(e) => {setSection('ALL')}}>All</Button>
+        <Button onClick={(e) => {setSection('PENDING')}}>Pending</Button>
+        <Button2 onClick={(e) => {setSection('ADD')}}>Add Friend</Button2>
       </Div>
 
       <FriendsContainer>

@@ -4,7 +4,7 @@ const friends_queries = require('../queries/friends_queries');
 async function addFriend(req,res,next) 
 {
 
-let sender = req.user.userId;
+let sender = req.user.id;
 let receiver = req.params.receiverId;
 
 let request = await friends_queries.send_friend_request(sender,receiver);
@@ -33,4 +33,12 @@ async function getFriends(req,res)
 
 }
 
-module.exports = {addFriend,acceptRequest, getFriends}
+
+async function getUserPendingRequests(req,res)
+{
+    let userId = req.user.id;
+    let pending_requests = await friends_queries.get_pending_friend_requests(userId);
+    res.json(pending_requests);
+}
+
+module.exports = {addFriend,acceptRequest, getFriends,getUserPendingRequests}
