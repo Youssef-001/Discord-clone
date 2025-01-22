@@ -12,6 +12,10 @@ router.get('/friends', authenticateToken,(req,res) => {
     friendsController.getFriends(req,res);
 })
 
+router.get('/', authenticateToken, (req,res) => {
+    friendsController.getRequests(req,res);
+})
+
 // get user pending requests
 router.get("/friend-requests", authenticateToken, (req, res) => {
     if (req.query.status === "pending") {

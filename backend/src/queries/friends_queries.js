@@ -85,5 +85,19 @@ async function send_friend_request(senderId, recipientId) {
     }
   }
 
+  async function get_requests(userId)
+  {
 
-  module.exports ={ send_friend_request, get_pending_friend_requests, get_friends, accept_friend_request}
+    const requests = await prisma.userFriends.findMany({
+      where: {
+        userId: userId
+      },  include: {
+        user: true,   // Include details of the other user
+        friend: true, // Include details of the friend
+      },
+    })
+return requests;
+  }
+
+
+  module.exports ={ send_friend_request, get_pending_friend_requests, get_friends, accept_friend_request,get_requests}

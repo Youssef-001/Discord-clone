@@ -45,10 +45,11 @@ function Friends()
 
         async function getUserFriends()
         {
-            let req = await fetch('http://localhost:5000/requests/friends', {headers: {Authorization: `Bearer ${token}`}});
+            let req = await fetch('http://localhost:5000/requests', {headers: {Authorization: `Bearer ${token}`}});
             let friends = await req.json();
-            setFriends(friends.friends);
-            console.log(friends.friends);
+            console.log(friends)
+            setFriends(friends);
+            console.log(friends);
 
         }
 

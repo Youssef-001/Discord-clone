@@ -91,9 +91,42 @@ border-radius: 8px;
 }
 `
 
+
+function filterFriends( friends, filter ) {
+  let filteredFriends = [];
+
+  if (filter === "ALL") {
+    filteredFriends = friends;
+  } else if (filter === "ONLINE") {
+
+    filteredFriends = friends.filter(friend => friend.friend.status === "ONLINE");
+  } else if (filter === "PENDING") {
+    
+    filteredFriends = friends.filter(friend => friend.friend.status === "PENDING");
+  }
+
+  return (
+    <>
+      {filteredFriends.map((friend, index) => (
+        <FriendCard
+          key={index}
+          name={friend.friend.display_name}
+          status={friend.friend.status}
+        />
+      ))}
+    </>
+  );
+}
+
+
 function FriendsHome({friends}) {
   const [section, setSection] = useState('ONLINE');
-
+  const renderContent = () => {
+    if (section === 'ADD') {
+      return <P>Add Friend Section Coming Soon...</P>; // Placeholder for Add Friend section
+    }
+    return filterFriends(friends,section);
+  };
   return (
     <Main>
       <Div>
@@ -108,13 +141,8 @@ function FriendsHome({friends}) {
       </Div>
 
       <FriendsContainer>
-        <P>Online — 1</P>
-        <FriendsDiv>
-        {friends.map((friend, index) => (
-          <FriendCard key={index} name={friend.friend.display_name} status={friend.friend.status} />
-        ))}
 
-        </FriendsDiv>
+      <FriendsDiv>{renderContent()}</FriendsDiv>
       </FriendsContainer>
     </Main>
   );

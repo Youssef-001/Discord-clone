@@ -41,4 +41,14 @@ async function getUserPendingRequests(req,res)
     res.json(pending_requests);
 }
 
-module.exports = {addFriend,acceptRequest, getFriends,getUserPendingRequests}
+
+async function getRequests(req,res)
+{
+    let userId = req.user.id;
+
+    let requests = await friends_queries.get_requests();
+
+    res.json(requests);
+}
+
+module.exports = {addFriend,acceptRequest, getFriends,getUserPendingRequests,getRequests}
