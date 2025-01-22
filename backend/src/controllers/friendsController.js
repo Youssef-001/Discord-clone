@@ -17,10 +17,10 @@ next();
 
 async function acceptRequest(req,res) 
 {
-    let sender = req.user.userId;
-    let friend = req.params.friendId;
+    let receiver = req.user.id;
+    let sender = req.params.friendId;
 
-    let request = await friends_queries.accept_friend_request(sender,friend);
+    let request = await friends_queries.accept_friend_request(sender,receiver);
 
     console.log(request)
 }

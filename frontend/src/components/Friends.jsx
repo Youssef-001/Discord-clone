@@ -70,9 +70,15 @@ function Friends()
 
         </FriendsSection>
         
-        {friends.map((friend, index) => (
-          <FriendCard key={index} name={friend.friend.display_name} status={friend.friend.status} />
-        ))}
+        {friends
+  .filter(friend => friend.status === 'ACCEPTED') // Filter friends with status "ACCEPTED"
+  .map((friend, index) => (
+    <FriendCard
+      key={index}
+      name={friend.friend.display_name}
+      status={friend.friend.status}
+    />
+  ))}
 
 
         </FriendsDiv>

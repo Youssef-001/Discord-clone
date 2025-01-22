@@ -69,8 +69,8 @@ async function send_friend_request(senderId, recipientId) {
       const updatedRequest = await prisma.userFriends.update({
         where: {
             userId_friendId: {
-              userId: recipientId,
-              friendId: senderId,
+              userId: senderId,
+              friendId: recipientId,
             },
           },
         data: {

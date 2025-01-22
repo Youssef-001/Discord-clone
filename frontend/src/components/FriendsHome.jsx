@@ -96,13 +96,13 @@ function filterFriends( friends, filter ) {
   let filteredFriends = [];
 
   if (filter === "ALL") {
-    filteredFriends = friends;
-  } else if (filter === "ONLINE") {
+    filteredFriends = friends.filter(friend => friend.status === "ACCEPTED");
+  } else if (filter === "ACCEPTED") {
 
     filteredFriends = friends.filter(friend => friend.friend.status === "ONLINE");
   } else if (filter === "PENDING") {
     
-    filteredFriends = friends.filter(friend => friend.friend.status === "PENDING");
+    filteredFriends = friends.filter(friend => friend.status === "PENDING");
   }
 
   return (
