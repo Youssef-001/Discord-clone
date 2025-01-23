@@ -5,7 +5,7 @@
   import Signup from './components/Signup.jsx'
   import { createBrowserRouter, RouterProvider } from "react-router-dom";
   import Login from './components/Login.jsx';
-
+import DiscoverLayout from './components/DiscoverLayout.jsx'
   import { AppProvider } from "./components/Context.jsx"; // 
 
   import ServerLayout from './components/ServerLayout.jsx'
@@ -27,7 +27,10 @@
       path: 'login',
       element: <Login/>
     },
-
+    {
+      path: 'discover',
+      element: <DiscoverLayout/>
+    },
     {
       path: 'server/:serverId/channel/:channelId',
       element: <ServerLayout/>

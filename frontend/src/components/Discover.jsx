@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import logo from '../assets/compass.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Button = styled.button`
 
@@ -47,10 +48,11 @@ border-top: 2px solid #36373C;
 
 function Discover({setSection})
 {
+    const navigate = useNavigate();
 
     return (
 <>
-        <Button onClick={(e) => {setSection('DISCOVER')}}>
+        <Button onClick={(e) => navigate('/discover')}>
             <Img src={logo} />
         </Button>
         <Br></Br>
