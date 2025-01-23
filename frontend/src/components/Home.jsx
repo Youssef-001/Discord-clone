@@ -5,6 +5,7 @@ import {useState,useEffect} from 'react'
 import ServerDialog from './ServerDialog'
 import DiscoverServers from './DiscoverServers'
 import { jwtDecode } from "jwt-decode";
+import { useAppContext } from "./Context";
 
 const HomeDiv = styled.div`
   display: grid;
@@ -15,11 +16,11 @@ const HomeDiv = styled.div`
 `;
 
 function Home() {
-  const [createServerDialoge, setCreateServerDialoge] = useState(false);
-  const [servers, setServers] = useState([]);
-  const [section, setSection] = useState('HOME');
+  // const [createServerDialoge, setCreateServerDialoge] = useState(false);
+  // const [servers, setServers] = useState([]);
+  // const [section, setSection] = useState('HOME');
 
-
+const {servers, setServers, section, setSection, createServerDialoge,setCreateServerDialoge} = useAppContext();
 
   return (
     <>

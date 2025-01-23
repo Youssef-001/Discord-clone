@@ -6,6 +6,7 @@
   import { createBrowserRouter, RouterProvider } from "react-router-dom";
   import Login from './components/Login.jsx';
 
+  import { AppProvider } from "./components/Context.jsx"; // 
 
   import ServerLayout from './components/ServerLayout.jsx'
 
@@ -36,7 +37,7 @@
   ])
 
   createRoot(document.getElementById('root')).render(
-    <StrictMode>
-      <RouterProvider router={router}/>
-    </StrictMode>,
+    <AppProvider>
+    <RouterProvider router={router} />
+  </AppProvider>
   )
