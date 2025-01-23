@@ -107,11 +107,22 @@ svg{
 color:#fff}
 `
 
-function PendingControls()
+async function AcceptRequest(id)
+{
+  let token = localStorage.getItem('token');
+  console.log(token);
+
+  let request = await fetch(`http://localhost:5000/requests/friend-requests/accept/${id}`, { method:'PUT',headers: {Authorization: `Bearer ${token}`}});
+  let requestJson = await request.json();
+  console.log(requestJson);
+
+}
+
+function PendingControls({id})
 {
   return (
     <div style={{marginLeft:'auto', display:'flex', gap: '1rem'}}>
-<AcceptButton>
+<AcceptButton onClick={(e) => {AcceptRequest(id)}}> 
           <SVG xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
 </SVG>
@@ -129,16 +140,17 @@ function PendingControls()
   )
 }
 
-function FriendCard({ avatar = logo, name, status, isPending }) {
+function FriendCard({ avatar = logo, name, status, isPending, id }) {
+  console.log("id: ", id)
   return (
     <>
       <GlobalStyle />
-      <Button>
+      <Button >
         <ImgContainer status={status}>
           <Img src={logo} alt="" />
         </ImgContainer>
         <P>{name}</P>
-        {isPending ? <PendingControls style={{marginLeft:'3rem'}}></PendingControls> : null}
+        {isPending ? <PendingControls id={id} style={{marginLeft:'3rem'}}></PendingControls> : null}
       </Button>
     </>
   );

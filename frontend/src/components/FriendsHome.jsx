@@ -100,7 +100,6 @@ function filterFriends( friends, filter ) {
 
     filteredFriends = friends.filter(friend => friend.friend.status === "ONLINE");
   } else if (filter === "PENDING") {
-    
     filteredFriends = friends.filter(friend => friend.status === "PENDING");
   }
 
@@ -109,9 +108,10 @@ function filterFriends( friends, filter ) {
       {filteredFriends.map((friend, index) => (
         <FriendCard
           key={index}
-          name={friend.friend.display_name}
-          status={friend.friend.status}
+          name={friend.user.username}
+          status={friend.user.status}
           isPending={friend.status == "PENDING" ? true : false}
+          id={friend.user.id}
         />
       ))}
     </>
@@ -120,6 +120,8 @@ function filterFriends( friends, filter ) {
 
 
 function FriendsHome({friends}) {
+  console.log(friends);
+  
   const [section, setSection] = useState('ONLINE');
   const renderContent = () => {
     if (section === 'ADD') {
