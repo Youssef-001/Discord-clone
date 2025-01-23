@@ -73,7 +73,7 @@ function ServerBar({serverDialog,setDialog, servers, setServers,setSection}) {
       <Discover setSection={setSection} />
 
       {servers.map((server, index) => (
-          <ServerBox servers={servers} key={index} serverId={server.id} channelId={server.channels[0].id} avatar={server.avatar} />
+          <ServerBox name={server.name} servers={servers} key={index} serverId={server.id} channelId={server.channels[0].id} avatar={server.avatar} />
         ))}
 
       </Items>

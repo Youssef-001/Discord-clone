@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate from react
 import { useEffect, useState } from "react";
 
 // ServerBox component
-function ServerBox({ avatar, serverId, channelId, servers }) {
+function ServerBox({ avatar, serverId, channelId, servers, name}) {
   const baseUrl = "http://localhost:5000/uploads";
   const [imageUrl, setImageUrl] = useState(`${baseUrl}/${avatar}`);
   const navigate = useNavigate(); // Initialize the navigate function
 
   const handleNavigation = () => {
-    navigate(`/server/${serverId}/channel/${channelId}`, {state:servers}); // Navigate to the desired URL
+    navigate(`/server/${serverId}/channel/${channelId}`, {state:{servers, name}}); // Navigate to the desired URL
   };
 
   return (
