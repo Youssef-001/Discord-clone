@@ -56,7 +56,20 @@ async function getUserServers(userId) {
       let servers = await prisma.users.findUnique({
         where: { id: userId },
         select: {
-          memberOf: true,  // Select the related servers
+          memberOf: {
+            select: {
+              id: true,
+              name: true,
+              avatar: true,
+              ownerId: true,
+              channels: { // Include channels
+                select: {
+                  id: true,
+                  name: true,
+                },
+              },
+            },
+          },
         },
       });
   

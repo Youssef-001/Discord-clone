@@ -73,8 +73,8 @@ function Friends()
   .map((friend, index) => (
     <FriendCard
       key={index}
-      name={friend.friend.display_name}
-      status={friend.friend.status}
+      name={friend.user.display_name}
+      status={friend.user.status}
     />
   ))}
         </FriendsSection>

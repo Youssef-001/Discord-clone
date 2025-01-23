@@ -32,6 +32,7 @@ margin-top: 1rem;
 `
 
 function ServerBar({serverDialog,setDialog, servers, setServers,setSection}) {
+  console.log(servers)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,7 +73,7 @@ function ServerBar({serverDialog,setDialog, servers, setServers,setSection}) {
       <Discover setSection={setSection} />
 
       {servers.map((server, index) => (
-          <ServerBox key={index} avatar={server.avatar} />
+          <ServerBox servers={servers} key={index} serverId={server.id} channelId={server.channels[0].id} avatar={server.avatar} />
         ))}
 
       </Items>
