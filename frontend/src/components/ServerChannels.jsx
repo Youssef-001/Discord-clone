@@ -26,7 +26,7 @@ cursor:pointer;
 display:flex;
 align-items:cecnter;
 gap: 10px;
-margin-top: 2rem;
+margin-top: 1rem;
 
 &:hover{
 
