@@ -28,7 +28,7 @@ const TextInput = styled.div``
 
 const ChannelMessages = styled.div`display:flex;flex-direction:column;gap:1rem; padding: 1rem;`
 
-function TextChannel({channelName})  {
+function TextChannel({channelName,currentChannel})  {
 
     const { serverId, channelId } = useParams(); 
     const token = localStorage.getItem('token')
@@ -40,6 +40,7 @@ function TextChannel({channelName})  {
 
         async function fetchMessages()
         {
+            console.log("hellllo");
             let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${channelId}/messages`, {headers: {Authorization: `Bearer ${token}`}});
             let responseJson = await response.json();
             setMessages(responseJson);
@@ -47,7 +48,7 @@ function TextChannel({channelName})  {
 
         fetchMessages();
 
-    }, [])
+    }, [currentChannel])
 
 return(
 
