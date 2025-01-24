@@ -21,7 +21,7 @@ function formatDateToCustomFormat(dateString) {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     
     // Format the date as 'MM/DD/YY, HH:MM AM/PM'
-    return `${month}/${day}/${year}, ${hours}:${minutes} ${ampm}`;
+    return `${month}/${day}/${year}  ${hours}:${minutes} ${ampm}`;
   }
 
 const MessageDiv = styled.div`
@@ -43,14 +43,14 @@ function Message({avatar=logo, name, message, date})
     return (
 
         <MessageDiv >
-            <img src={logo} alt=""  style={{width:'2rem', height:'2rem', borderRadius:'75%'}}/>
+            <img src={logo} alt=""  style={{width:'3rem', height:'3rem', borderRadius:'75%'}}/>
             <div>
                 <p style={{color:'#E3EDF5'}}>{name}</p>
 
             <p style={{marginTop:'8px', color:'#E3EDF5'}}>{message}</p>
             </div>
 
-            <datetime style={{color:'#caccce', fontSize: '0.8rem'}}>{formatDateToCustomFormat(date)}</datetime>
+            <datetime style={{color:'grey', fontSize: '0.876rem'}}>{formatDateToCustomFormat(date)}</datetime>
         </MessageDiv>
     )
 

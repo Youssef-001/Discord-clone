@@ -19,7 +19,28 @@ const SVG = styled.svg`color:#80848E; width:1.5rem; height: 1.5rem;`
 const Channel = styled.div`
 
 display:grid;
-grid-template-rows: auto 8fr 1fr;
+grid-template-rows: auto 10fr 1fr;
+
+`
+
+const Input = styled.input`
+
+background-color:#383A40;
+padding: 1rem;
+
+border: 1px solid #383A40;
+width:100%;
+box-sizing: border-box;
+color:#BABDC0;
+font-size: 1rem;
+
+`
+
+const Form = styled.form`
+
+position:'relative';
+padding: 0 0.6rem;
+
 
 `
 
@@ -72,7 +93,11 @@ return(
 
 
     <TextInput>
+        <Form>
 
+        <Input placeholder={`Message # ${channelName}`}></Input>
+
+        </Form>
     </TextInput>
 
 
