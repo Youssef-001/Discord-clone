@@ -19,4 +19,15 @@ async function createMessage(messageText,userId,channelId)
     return message;
 }
 
-module.exports = {createMessage}
+async function getMessages(channelId)
+{
+    let messages = prisma.messages.findMany({
+        where: {
+            channelId: channelId
+        }
+    })
+
+    return messages
+}
+
+module.exports = {createMessage,getMessages}

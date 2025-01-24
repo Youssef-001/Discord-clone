@@ -14,4 +14,11 @@ async function createMessage(req,res)
 
 }
 
-module.exports = {createMessage}
+async function getMessages(req,res)
+{
+    let channelId = req.params.channelId;
+    let messages = await message_queries.getMessages(channelId);
+    res.json(messages);
+}
+
+module.exports = {createMessage,getMessages}

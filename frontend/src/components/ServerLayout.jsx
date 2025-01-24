@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import ServerDialog from './ServerDialog';
 import ServerBar from './ServerBar';
 import ServerChannels from './ServerChannels';
+import TextChannel from './TextChannel'
 
 const Layout = styled.div`
   display: grid;
@@ -205,6 +206,7 @@ function ServerLayout() {
 </div>
 
 </ChannelDialog> : null}
+<TextChannel channelName={currentChannel.name}></TextChannel>
     </Layout>
 
     

@@ -24,6 +24,10 @@ router.post('/:serverId/channel/:channelId/message', authenticateToken, (req,res
     messageController.createMessage(req,res);
 })
 
+router.get('/:serverId/channel/:channelId/messages', authenticateToken, (req,res) => {
+    messageController.getMessages(req,res);
+})
+
 router.post('/:serverId/join', authenticateToken, (req,res) => {
 
     serverController.joinServer(req,res);
