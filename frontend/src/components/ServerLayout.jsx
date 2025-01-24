@@ -82,7 +82,6 @@ function ServerLayout() {
 
   async function createChannel(e)
   {
-    e.preventDefault();
     console.log("halllo")
 
     const response = await fetch(`http://localhost:5000/server/${serverId}/channel`, {
