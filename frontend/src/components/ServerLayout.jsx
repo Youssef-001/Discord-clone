@@ -81,9 +81,10 @@ function ServerLayout() {
   const [channelName, setChannelName] = useState('');
 
 
+  console.log("channel id: ", channelId)
+
   async function createChannel(e)
   {
-    console.log("halllo")
 
     const response = await fetch(`http://localhost:5000/server/${serverId}/channel`, {
       method: 'POST',

@@ -15,7 +15,7 @@ border-bottom: 1px solid black;
 `
 
 const SVG = styled.svg`color:#80848E; width:1.5rem; height: 1.5rem;`
-const SVG2 = styled.svg`color:#80848E; width:2rem; height: 2rem;position:absolute;right:10px;top:10px; cursor:pointer`
+const SVG2 = styled.svg`color:#5CA65A; width:2rem; height: 2rem;position:absolute;right:10px;top:10px; cursor:pointer`
 
 const Channel = styled.div`
 
@@ -69,7 +69,7 @@ function TextChannel({channelName,currentChannel})  {
         async function fetchMessages()
         {
             console.log("hellllo");
-            let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${channelId}/messages`, {headers: {Authorization: `Bearer ${token}`}});
+            let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${currentChannel.id}/messages`, {headers: {Authorization: `Bearer ${token}`}});
             let responseJson = await response.json();
             setMessages(responseJson);
         }
