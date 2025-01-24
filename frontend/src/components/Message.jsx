@@ -1,19 +1,19 @@
+import logo from '../assets/l.jpeg';
 
-
-function Message({avatar, name, message, date})
+function Message({avatar=logo, name, message, date})
 {
 
     return (
 
-        <div>
-            <img src={avatar} alt="" />
+        <div style={{display:'flex', gap:'1rem'}}>
+            <img src={logo} alt=""  style={{width:'2rem', height:'2rem', borderRadius:'75%'}}/>
             <div>
-                <p>{name}</p>
+                <p style={{color:'#E3EDF5'}}>{name}</p>
 
-            <datetime>{date}</datetime>
+            <p style={{marginTop:'8px', color:'#E3EDF5'}}>{message}</p>
             </div>
 
-            <p>{message}</p>
+            <datetime style={{color:'#caccce'}}>{date}</datetime>
         </div>
     )
 

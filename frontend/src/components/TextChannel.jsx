@@ -1,6 +1,7 @@
 import {useEffect,useState} from 'react';
 import styled from 'styled-components'
 import Message from './Message'
+import { useParams } from 'react-router-dom';
 
 const ChannelInfo = styled.div`
 
@@ -25,9 +26,12 @@ grid-template-rows: auto 8fr 1fr;
 const TextInput = styled.div``
 
 
-const ChannelMessages = styled.div``
+const ChannelMessages = styled.div`display:flex;flex-direction:column;gap:1rem; padding: 1rem;`
 
 function TextChannel({channelName})  {
+
+    const { serverId, channelId } = useParams(); 
+    const token = localStorage.getItem('token')
 
 
     const [messages, setMessages] = useState([]);
@@ -36,7 +40,7 @@ function TextChannel({channelName})  {
 
         async function fetchMessages()
         {
-            let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${channelId}/messages`);
+            let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${channelId}/messages`, {headers: {Authorization: `Bearer ${token}`}});
             let responseJson = await response.json();
             setMessages(responseJson);
         }
@@ -61,7 +65,7 @@ return(
 
     <ChannelMessages>
         {messages.map((message) => (
-            <Message ></Message>
+            <Message avatar={message.user.avatar} name={message.user.display_name} message={message.message} date={message.date}></Message>
         ))}
     </ChannelMessages>
 
