@@ -14,7 +14,7 @@ function ServerBox({ avatar, serverId, channelId, servers, name}) {
   return (
     <button 
       onClick={handleNavigation} // Attach navigation function to onClick
-      style={{ display: 'flex', alignItems: 'center', gap: '1rem', all: 'unset' }}
+      style={{ display: 'flex', alignItems: 'center', gap: '1rem', all: 'unset', cursor:'pointer' }}
     >
       {imageUrl ? (
         <img 

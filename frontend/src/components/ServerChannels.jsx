@@ -17,7 +17,9 @@ cursor:pointer;
 &:hover{background-color:#36373D}
 `
 
-const ChannelDiv = styled.div`
+const ChannelButton = styled.button`
+all:unset;
+width:80%;
 padding: 0.5rem;
 cursor:pointer;
 display:flex;
@@ -40,12 +42,19 @@ const SVG4= styled.svg`width:1.5rem; height: 1.5rem; color:white; cursor:pointer
 const SVG5 = styled.svg`width: 1.7rem; height: 1.7rem; color: #caccce;`
 const Bar = styled.div`display:flex;margin-top:3rem;`;
 const TextChannels = styled.div``
-function ServerChannels({name, server})
+
+
+const ChannelDialog = styled.div`width:100%; background-color:green`
+
+function ServerChannels({name, server,setCurrentChannel})
 {
+
+    const [createChannelDialog, setCreateChannelDialog] = useState(false);
 
     return (
 
         <>
+
         <ChannelBar>
         <ServerInfo>
             <p style={{color:'white', fontSize: '1.5rem'}}> {name}</p>
@@ -62,24 +71,34 @@ function ServerChannels({name, server})
 </SVG2>
 
 <p style={{color:'#C9CCCF', marginLeft:'10px'}}>TEXT CHANNELS</p>
+
+        <button style={{all:'unset', marginLeft:'auto'}} onClick={(e) => {setCreateChannelDialog(!createChannelDialog)}}>
+
         <SVG3 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 </SVG3>
+        </button>
             </Bar>
 
         <TextChannels>  
-            <ChannelDiv >
-            <SVG5 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
-</SVG5>
 
-            {server.channels.map((channel) => (<h2 style={{color:'#caccce'}}>{channel.name}</h2>))}
-            </ChannelDiv>
+            {server.channels.map((channel) => (
+                            <ChannelButton onClick={() => {setCurrentChannel(channel)}} >
+                            <SVG5 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5-3.9 19.5m-2.1-19.5-3.9 19.5" />
+                </SVG5>
+                
+                <h2 style={{color:'#caccce'}}>{channel.name}</h2>
+                            </ChannelButton>
+                
+                ))}
 
 
 
         </TextChannels>
         </ChannelBar>
+        {createChannelDialog ? <ChannelDialog></ChannelDialog> : null}
+
         </>
     )
     

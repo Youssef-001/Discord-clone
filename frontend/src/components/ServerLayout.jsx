@@ -76,7 +76,7 @@ function ServerLayout() {
           setServers={setServers}
         />
       )}
-      <ServerChannels server={currentServer} name={name} />
+      <ServerChannels server={currentServer} name={name} setCurrentChannel={setCurrentChannel}/>
     </Layout>
   );
 }
