@@ -44,12 +44,10 @@ const Bar = styled.div`display:flex;margin-top:3rem;`;
 const TextChannels = styled.div``
 
 
-const ChannelDialog = styled.div`width:100%; background-color:green`
 
-function ServerChannels({name, server,setCurrentChannel})
+function ServerChannels({name, server,setCurrentChannel,createChannelDialog, setCreateChannelDialog})
 {
 
-    const [createChannelDialog, setCreateChannelDialog] = useState(false);
 
     return (
 
@@ -97,7 +95,7 @@ function ServerChannels({name, server,setCurrentChannel})
 
         </TextChannels>
         </ChannelBar>
-        {createChannelDialog ? <ChannelDialog></ChannelDialog> : null}
+        
 
         </>
     )

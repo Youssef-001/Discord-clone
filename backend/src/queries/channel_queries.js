@@ -2,7 +2,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-async function createChannel(name, serverId)
+async function createChannel(name='general', serverId)
 {
 
 let channel = await prisma.channels.create({
