@@ -24,7 +24,9 @@ async function getMessages(channelId)
     let messages = prisma.messages.findMany({
         where: {
             channelId: channelId
-        }
+        },include: {
+            user: true, // Include the user relation
+          },
     })
 
     return messages

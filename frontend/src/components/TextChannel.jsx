@@ -1,6 +1,6 @@
 import {useEffect,useState} from 'react';
 import styled from 'styled-components'
-
+import Message from './Message'
 
 const ChannelInfo = styled.div`
 
@@ -15,7 +15,17 @@ border-bottom: 1px solid black;
 
 const SVG = styled.svg`color:#80848E; width:1.5rem; height: 1.5rem;`
 
-const Channel = styled.div``
+const Channel = styled.div`
+
+display:grid;
+grid-template-rows: auto 8fr 1fr;
+
+`
+
+const TextInput = styled.div``
+
+
+const ChannelMessages = styled.div``
 
 function TextChannel({channelName})  {
 
@@ -26,8 +36,12 @@ function TextChannel({channelName})  {
 
         async function fetchMessages()
         {
-            let response = await fetch('');
+            let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${channelId}/messages`);
+            let responseJson = await response.json();
+            setMessages(responseJson);
         }
+
+        fetchMessages();
 
     }, [])
 
@@ -45,7 +59,16 @@ return(
 
     </ChannelInfo>
 
+    <ChannelMessages>
+        {messages.map((message) => (
+            <Message ></Message>
+        ))}
+    </ChannelMessages>
 
+
+    <TextInput>
+
+    </TextInput>
 
 
     </Channel>
