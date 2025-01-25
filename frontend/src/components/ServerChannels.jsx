@@ -27,6 +27,7 @@ display:flex;
 align-items:cecnter;
 gap: 10px;
 margin-top: 1rem;
+font-size: 0.9rem;
 
 &:hover{
 
@@ -40,7 +41,7 @@ const SVG = styled.svg``
 const SVG2= styled.svg`width:1rem; height:1rem;color:#C9CCCF; margin-left:10px; cursor:pointer `
 const SVG3= styled.svg`width:1rem; height: 1rem; color:#C9CCCF; margin-left:auto; margin-right: 1rem; cursor:pointer;&:hover{color:white}`
 const SVG4= styled.svg`width:1.5rem; height: 1.5rem; color:white; cursor:pointer;&:hover{color:white}`
-const SVG5 = styled.svg`width: 1.7rem; height: 1.7rem; color: #caccce;`
+const SVG5 = styled.svg`width: 1.5rem; height: 1.5rem; color: #caccce;`
 const Bar = styled.div`display:flex;margin-top:3rem;`;
 const TextChannels = styled.div``
 

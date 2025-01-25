@@ -14,7 +14,7 @@ const Layout = styled.div`
 `;
 export default function DiscoverLayout()
 {
-    const {servers, setServers, section, setSection, createServerDialoge,setCreateServerDialoge} = useAppContext();
+    const {servers, setServers, section, setSection, createServerDialoge,setCreateServerDialoge, allServers, setAllServers} = useAppContext();
     
     return (
         <Layout>
@@ -26,7 +26,7 @@ export default function DiscoverLayout()
           setSection={setSection}
         ></ServerBar>
 
-<DiscoverServers servers={servers}></DiscoverServers>
+<DiscoverServers servers={allServers}></DiscoverServers>
         </Layout>
     )
 }

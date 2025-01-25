@@ -34,7 +34,7 @@ const Input = styled.input`
 const Form = styled.form`
   position: fixed;
   bottom: 10px;
-  width: 75%;
+  width: 77%;
   padding: 0 0.6rem;
   background-color: #2F3136; /* Match the background color */
 `;

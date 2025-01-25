@@ -31,4 +31,11 @@ async function getUserServers(req,res)
 }
 
 
-module.exports = {createServer,joinServer,getUserServers}
+async function getAllServers(req,res)
+{
+    let servers = await server_queries.get_all_servers();
+    res.json(servers);
+}
+
+
+module.exports = {createServer,joinServer,getUserServers,getAllServers}

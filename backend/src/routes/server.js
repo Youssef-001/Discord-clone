@@ -38,5 +38,9 @@ router.get('/user', authenticateToken, (req,res) => {
     serverController.getUserServers(req,res);
 })
 
+router.get('/', (req,res) => {
+    serverController.getAllServers(req,res);
+})
+
 
 module.exports = router;

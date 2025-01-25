@@ -80,4 +80,24 @@ async function getUserServers(userId) {
       throw new Error('Failed to retrieve user servers');
     }
   }
-module.exports = {createServer,joinServer,getUserServers}
+
+
+
+async function get_all_servers()
+{
+
+
+  try {
+    let servers = await prisma.servers.findMany();
+    return servers;
+  }
+  catch(error)
+
+  {
+    console.error(error);
+    throw new Error('Failed to fetch all servers');
+  }
+
+}
+
+module.exports = {createServer,joinServer,getUserServers,get_all_servers}

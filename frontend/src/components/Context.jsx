@@ -7,9 +7,10 @@ export const AppProvider = ({ children }) => {
     const [createServerDialoge, setCreateServerDialoge] = useState(false);
   const [servers, setServers] = useState([]);
   const [section, setSection] = useState('HOME');
+  const [allServers, setAllServers] = useState([]);
 
   useEffect(() => {
-      const fetchData = async () => {
+      const fetchUserServers = async () => {
         try {
           // Retrieve the token from localStorage
           const token = localStorage.getItem("token");
@@ -35,12 +36,44 @@ export const AppProvider = ({ children }) => {
           console.error("Error fetching server data:", error);
         }
       };
+
+
+      const fetchAllServers = async () => {
+        try {
+          // Retrieve the token from localStorage
+          const token = localStorage.getItem("token");
+          if (!token) {
+            console.error("No token found");
+            return;
+          }
   
-      fetchData();
+          // Decode the token
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.id;
+  
+          // Make the API request
+          const servers = await fetch("http://localhost:5000/server", 
+          );
+          console.log(servers)
+  
+          const serversJson = await servers.json();
+          setAllServers(serversJson);
+          console.log(serversJson);
+        } catch (error) {
+          console.error("Error fetching server data:", error);
+        }
+      };
+
+
+
+  
+      fetchUserServers();
+      fetchAllServers();
+
     }, []);
 
   return (
-    <AppContext.Provider value={{ servers, setServers,createServerDialoge, setCreateServerDialoge,section, setSection }}>
+    <AppContext.Provider value={{ servers, setServers,createServerDialoge, setCreateServerDialoge,section, setSection, allServers, setAllServers }}>
       {children}
     </AppContext.Provider>
   );
