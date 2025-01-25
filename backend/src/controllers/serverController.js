@@ -10,9 +10,12 @@ async function createServer(req,res)
 
     let joinServerRequest = await fetch(`http://localhost:5000/server/${server.id}/join`,  {method:'POST',headers: {Authorization: `Bearer ${req.body.token}`}})
     let channel = await fetch(`http://localhost:5000/server/${server.id}/channel`, {method:'POST', headers:{Authorization:`Bearer ${req.body.token}`}})
-
-
-    res.json(server);
+    let channelJson = await channel.json();
+    console.log(server);
+    console.log(channelJson);
+    server.channels.push(channelJson);
+    console.log(server);
+    res.json(server);   
 }
 
 async function joinServer(req,res)

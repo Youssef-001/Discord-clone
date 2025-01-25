@@ -26,7 +26,7 @@ export default function DiscoverLayout()
           setSection={setSection}
         ></ServerBar>
 
-<DiscoverServers servers={allServers}></DiscoverServers>
+<DiscoverServers servers={servers} setServers={setServers} allServers={allServers}></DiscoverServers>
         </Layout>
     )
 }

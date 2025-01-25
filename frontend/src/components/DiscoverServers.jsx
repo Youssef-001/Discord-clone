@@ -63,7 +63,7 @@ const P = styled.p`
   font-size: 1.2rem;
 `;
 
-function DiscoverServers({ servers }) {
+function DiscoverServers({ servers, setServers, allServers }) {
   const baseUrl = 'http://localhost:5000/uploads/';
   console.log(servers);
   
@@ -76,6 +76,7 @@ function DiscoverServers({ servers }) {
     let request = await fetch(`http://localhost:5000/server/${serverId}/join`, {method:'POST', headers: {Authorization: `Bearer ${token}`}});
     let requestJson = await request.json();
     console.log(requestJson);
+    setServers([...servers, requestJson])
 
   }
 
@@ -87,7 +88,7 @@ function DiscoverServers({ servers }) {
           <P2>From gaming, to music, to learning, there's a place for you.</P2>
         </HERO>
         <Servers>
-          {servers.map((server, index) => (
+          {allServers.map((server, index) => (
             <ServerCard key={index} onClick={() => {joinServer(server.id)}}>
               <IMG src={baseUrl + server.avatar} alt="" />
               <div style={{ backgroundColor: '#232428', padding: '1rem', width: '275px' }}>

@@ -81,6 +81,7 @@ function TextChannel({ channelName, currentChannel }) {
   const { serverId, channelId } = useParams();
   const token = localStorage.getItem('token');
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);
 
   const [message, setMessage] = useState('');
 
@@ -98,8 +99,18 @@ function TextChannel({ channelName, currentChannel }) {
       }
     }
 
+    
+
     fetchMessages();
   }, [currentChannel]); // Only refetch when currentChannel changes
+
+
+useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]); // Trigger effect when messages change
+
 
   async function submitMessage(e) {
     e.preventDefault();

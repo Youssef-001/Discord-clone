@@ -11,7 +11,10 @@ async function createServer(name, avatar, ownerId)
             name:name,
             avatar: avatar,
             ownerId: ownerId
-        }
+        },
+        include: {
+          channels: true, // Include channels in the returned object
+      },
     })
 
     return server;
