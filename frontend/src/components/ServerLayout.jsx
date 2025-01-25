@@ -207,7 +207,7 @@ function ServerLayout() {
 </div>
 
 </ChannelDialog> : null}
-<TextChannel currentChannel={currentChannel} channelName={currentChannel.name}></TextChannel>
+<TextChannel currentChannel={currentChannel} channelName={currentChannel.name} ></TextChannel>
     </Layout>
 
     

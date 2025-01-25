@@ -73,17 +73,9 @@ function ServerBar({serverDialog,setDialog, servers, setServers,setSection}) {
       <Discover setSection={setSection} />
 
       {servers.map((server, index) => (
-  server.channels[index] ? (
-    <ServerBox 
-      name={server.name} 
-      servers={servers} 
-      key={index} 
-      serverId={server.id} 
-      channelId={server.channels[index].id} 
-      avatar={server.avatar} 
-    />
-  ) : null // Skip rendering if the channel at the index doesn't exist
-))}
+          <ServerBox name={server.name} servers={servers} key={index} serverId={server.id} channelId={server.channels[0].id} avatar={server.avatar} />
+        ))}
+
       </Items>
     </Nav>
   );
