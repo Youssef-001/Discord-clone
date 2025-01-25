@@ -82,7 +82,7 @@ function TextChannel({ channelName, currentChannel }) {
   const token = localStorage.getItem('token');
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
-
+  const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -94,6 +94,8 @@ function TextChannel({ channelName, currentChannel }) {
         });
         let responseJson = await response.json();
         setMessages(responseJson); // Set initial messages
+        setIsLoading(false);
+        console.log(responseJson);
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
@@ -148,16 +150,22 @@ useEffect(() => {
         </ChannelInfo>
 
         <ChannelMessages>
-          {messages.map((message) => (
-            <Message
-              key={message.id}
-              avatar={message.user?.avatar} // Safeguard with optional chaining
-              name={message.user?.display_name || "Unknown User"} // Fallback for undefined user
-              message={message.message}
-              date={message.date}
-            />
-          ))}
-        </ChannelMessages>
+  {isLoading ? (
+    <p>Loading messages...</p> // Show loading message while fetching
+  ) : messages.length > 0 ? (
+    messages.map((message) => (
+      <Message
+        key={message.id}
+        avatar={message.user?.avatar}
+        name={message.user.display_name}
+        message={message.message}
+        date={message.date}
+      />
+    ))
+  ) : (
+    <p>No messages found.</p> // Fallback UI when messages are empty
+  )}
+</ChannelMessages>
 
         <TextInput>
           <Form>

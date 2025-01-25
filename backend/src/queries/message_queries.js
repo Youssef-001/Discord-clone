@@ -13,7 +13,9 @@ async function createMessage(messageText,userId,channelId)
             channelId: channelId
 
 
-        }
+        },include: {
+            user: true, // Include the user relation
+        },
     })
 
     return message;
@@ -21,14 +23,14 @@ async function createMessage(messageText,userId,channelId)
 
 async function getMessages(channelId)
 {
-    let messages = prisma.messages.findMany({
+    let messages = await prisma.messages.findMany({
         where: {
             channelId: channelId
         },include: {
             user: true, // Include the user relation
           },
     })
-
+    console.log(messages);
     return messages
 }
 
