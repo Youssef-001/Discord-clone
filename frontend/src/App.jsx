@@ -9,6 +9,7 @@ const GlobalReset = styled.div`
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Ensures padding and border are included in the total width and height */
+    
   }
 `;
 function App() {

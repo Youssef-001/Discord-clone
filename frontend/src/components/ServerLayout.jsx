@@ -12,6 +12,8 @@ const Layout = styled.div`
   grid-template-columns: auto 1fr 6fr;
   opacity: ${(props) => (props.dimmed ? 0.5 : 1)}; /* Adjust opacity based on dimmed prop */
 \  transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+
+
 `;
 
 

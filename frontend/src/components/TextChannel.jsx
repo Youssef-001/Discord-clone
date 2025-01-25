@@ -17,7 +17,8 @@ const SVG2 = styled.svg`color: #5CA65A; width: 2rem; height: 2rem; position: abs
 
 const Channel = styled.div`
   display: grid;
-  grid-template-rows: auto 10fr 1fr;
+  grid-template-rows: auto 1fr auto; /* Adjusted to accommodate fixed input */
+  height: 100vh; /* Full viewport height */
 `;
 
 const Input = styled.input`
@@ -31,8 +32,11 @@ const Input = styled.input`
 `;
 
 const Form = styled.form`
-  position: relative;
+  position: fixed;
+  bottom: 10px;
+  width: 75%;
   padding: 0 0.6rem;
+  background-color: #2F3136; /* Match the background color */
 `;
 
 const TextInput = styled.div``;
@@ -42,9 +46,36 @@ const ChannelMessages = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
+  overflow-y: auto; /* Make messages scrollable */
+  max-height: calc(100vh - 150px); /* Adjust height to fit remaining space */
+
+
+/* Custom scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2F3136; /* Color of the track */
+    border-radius: 4px; /* Rounded corners for the track */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #202225; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded corners for the thumb */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #4F545C; /* Color of the thumb on hover */
+  }
+
+  /* Custom scrollbar for Firefox */
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #202225 #2F3136; /* thumb and track color */
+
 `;
 
-function TextChannel({ channelName, currentChannel,  }) {
+function TextChannel({ channelName, currentChannel }) {
   const messagesRef = useRef([]);
 
   const { serverId, channelId } = useParams();
