@@ -26,6 +26,8 @@ status Status @default(ONLINE)
 createdAt DateTime @default(now())
 memberOf Servers[]  @relation("UserServers")
 messages Messages[]
+direct_messages_sent DMS[] @relation("SenderDMS") 
+direct_messages_received DMS[] @relation("ReceiverDMS")
 
   ownedServers Servers[] @relation("UserOwnedServers")
 
@@ -78,6 +80,17 @@ model Messages {
   channel Channels @relation(fields:[channelId], references: [id])
   date DateTime @default(now())
 
+}
+
+
+model DMS {
+  id String @id @default(uuid())
+  sender Users @relation("SenderDMS",fields: [senderId], references: [id])
+  senderId String
+
+  receiver Users @relation("ReceiverDMS",fields: [receiverId], references: [id])
+  receiverId String
+  
 }
 
 enum Status {
