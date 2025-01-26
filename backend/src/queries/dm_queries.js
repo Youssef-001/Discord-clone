@@ -21,7 +21,7 @@ async function get_dms(user1, user2) {
         select: {
             id: true, // Include the message ID
             message: true, // Include the message text
-            createdAt: true, // Include the creation timestamp
+            date: true, // Include the creation timestamp
             sender: {
                 select: {
                     id: true,
@@ -57,7 +57,7 @@ async function send_dm(sender, receiver, messageText) {
             select: {
                 id: true, // Include the message ID
                 message: true, // Include the message text
-                createdAt: true, // Include the creation timestamp
+                date: true,
                 sender: {
                     select: {
                         id: true,
@@ -86,4 +86,16 @@ async function send_dm(sender, receiver, messageText) {
     }
 }
 
-module.exports = {get_dms,send_dm};
+
+async  function delete_message(messageId)
+{
+    let deleted_message = await prisma.dMS.delete({
+        where: {
+            id: messageId
+        }
+    })
+
+    return delete_message;
+}
+
+module.exports = {get_dms,send_dm,delete_message};

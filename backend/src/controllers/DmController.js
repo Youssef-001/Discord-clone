@@ -40,6 +40,27 @@ async function sendDm(req,res)
 }
 
 
+async function deleteMessage(req,res)
+{
+    const messageId = req.params.messageId;
+    if (!messageId)
+    {
+        return res.status(400).json({error: 'Missing messageId to be deleted'})
+    }
+    try {
+    let deletedMessage = await dm_queries.delete_message(messageId);
+    
+    res.json(deletedMessage);
+    }
+    catch(err)
+    {
+        console.error('Error deleteing message:', err);
+
+        // Handle database or other errors
+        res.status(500).json({ error: 'Failed to delete message' });
+    }
+
+}
 
 
-module.exports = {getDms,sendDm}
+module.exports = {getDms,sendDm,deleteMessage}
