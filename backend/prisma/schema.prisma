@@ -93,7 +93,7 @@ model DMS {
 
 
   message String
-  date DateTime
+  date DateTime @default(now())
   
 }
 
