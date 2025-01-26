@@ -7,6 +7,7 @@
   import Login from './components/Login.jsx';
 import DiscoverLayout from './components/DiscoverLayout.jsx'
   import { AppProvider } from "./components/Context.jsx"; // 
+  import DmLayout from './components/DmLayout.jsx'
 
   import ServerLayout from './components/ServerLayout.jsx'
 
@@ -34,6 +35,11 @@ import DiscoverLayout from './components/DiscoverLayout.jsx'
     {
       path: 'server/:serverId/channel/:channelId',
       element: <ServerLayout/>
+    },
+
+    {
+      path : 'dm/:username',
+      element : <DmLayout></DmLayout>
     }
 
 
