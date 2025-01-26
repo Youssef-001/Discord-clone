@@ -4,8 +4,10 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
 
 import { jwtDecode } from "jwt-decode";
+import { useParams } from 'react-router-dom';
 
 import ProfileSection from './ProfileSection';
+import { check } from 'express-validator';
 
 const ChannelBar = styled.div`
 
@@ -60,6 +62,7 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
     const user = jwtDecode(token);
     console.log(user);
     console.log("user::: ", user);
+    const {serverId} = useParams();
     
 
     useEffect(() => {
@@ -67,10 +70,23 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
         async function checkOwner()
         {
 
-            let response = fetch('http://')
+            let response = await fetch(`http://localhost:5000/server/${serverId}`);
+            let responseJson = await response.json();
+            console.log("halllllllo");
+            console.log(responseJson)
+            console.log(user);
+            console.log(isOwner);
 
+            if (responseJson.ownerId === user.id)
+            {
+                setIsOwner(true);
+            }
+            else {
+                setIsOwner(false);
+            }
         }
-    })
+        checkOwner();
+    }, [server,serverId])
 
 
     function changeChannel(channel)

@@ -3,7 +3,11 @@ const router = express.Router();
 const authenticateToken = require('../middlewares/authenticateToken.js')
 const multer = require('multer');
 const storage = multer.memoryStorage();  // This will store files in memory as buffers
-const upload = multer({ dest: 'uploads/' })
+const path  = require('path')
+console.log(__dirname)
+const uploadsPath = path.join(__dirname, "../../uploads/");
+
+const upload = multer({ dest: uploadsPath })
 
 const serverController = require('../controllers/serverController.js')
 const channelController = require('../controllers/channelController.js')
@@ -14,6 +18,7 @@ const authenticateServerOwner = require('../middlewares/authenticateServerOwner.
 router.post('/create',upload.single('avatar') ,authenticateToken,(req,res) => {
     serverController.createServer(req,res);
 })
+
 
 router.post('/:serverId/channel', authenticateToken, authenticateServerOwner, (req,res) => {
 
