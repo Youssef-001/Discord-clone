@@ -18,6 +18,7 @@ const login_router = require('./routes/login')
 const server_router = require('./routes/server')
 const requests_router = require('./routes/requests')
 const dms_router = require('./routes/dms');
+const user_router = require('./routes/users')
 
 app.get('/', (req,res) => {
     res.send('hi')
@@ -35,6 +36,8 @@ app.use('/requests', requests_router);
 app.use("/uploads", express.static(uploadsPath));
 
 app.use('/dms', dms_router)
+
+app.use('/users', user_router)
 
 
 app.use((err, req, res, next) => {
