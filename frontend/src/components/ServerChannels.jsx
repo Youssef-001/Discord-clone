@@ -92,7 +92,7 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
     function changeChannel(channel)
     {
         setCurrentChannel(channel);
-        navigate(`/server/${server.id}/channel/${channel.id}`);
+        navigate(`/server/${server.id}/channel/${channel.id}`,{state:{name}});
 
     }
 

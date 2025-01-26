@@ -80,6 +80,8 @@ function ServerLayout() {
   const location = useLocation();
   const passedState = location.state || {};
   const { name } = location.state || {};
+  console.log(name)
+  console.log("the stateeee is: ", location.state);
   console.log(passedState);
   const token = localStorage.getItem('token')
   const [channelName, setChannelName] = useState('');
