@@ -58,6 +58,7 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
     const token = localStorage.getItem('token');
     const [isOwner, setIsOwner] = useState(false);
     const user = jwtDecode(token);
+    console.log(user);
     console.log("user::: ", user);
     
 
