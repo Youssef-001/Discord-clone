@@ -5,14 +5,14 @@ const DmController = require('../controllers/DmController.js')
 
 
 
-router.get('/', (req,res) => {
+router.get('/:user1/:user2', (req,res) => {
 
     DmController.getDms(req,res);
 
 })
 
 
-router.post('/', (req,res) => {
+router.post('/:user1/:user2', (req,res) => {
     DmController.sendDm(req,res);
 })
 

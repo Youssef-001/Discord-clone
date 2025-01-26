@@ -3,8 +3,8 @@ const dm_queries = require('../queries/dm_queries.js')
 async function getDms(req,res)
 {
 
-    let user1 = req.user.username;
-    let user2 = req.params.username;
+    let user1 = req.params.user1;
+    let user2 = req.params.user2;
 
     let messages = await dm_queries.get_dms(user1,user2);
 
@@ -15,8 +15,8 @@ async function getDms(req,res)
 
 async function sendDm(req,res)
 {
-    const sender = req.user.username;
-    const receiver = req.params.username;
+    const sender = req.params.user1;
+    const receiver = req.params.user2;
     const messageText = req.body.message;
 
 
