@@ -8,13 +8,14 @@ const upload = multer({ dest: 'uploads/' })
 const serverController = require('../controllers/serverController.js')
 const channelController = require('../controllers/channelController.js')
 const messageController = require('../controllers/messageController.js')
+const authenticateServerOwner = require('../middlewares/authenticateServerOwner.js')
 
 
 router.post('/create',upload.single('avatar') ,authenticateToken,(req,res) => {
     serverController.createServer(req,res);
 })
 
-router.post('/:serverId/channel', authenticateToken, (req,res) => {
+router.post('/:serverId/channel', authenticateToken, authenticateServerOwner, (req,res) => {
 
     channelController.createChannel(req,res);
 
@@ -40,6 +41,11 @@ router.get('/user', authenticateToken, (req,res) => {
 
 router.get('/', (req,res) => {
     serverController.getAllServers(req,res);
+})
+
+
+router.get('/:serverId',(req,res) => {
+    serverController.getServer(req,res);
 })
 
 

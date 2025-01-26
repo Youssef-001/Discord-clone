@@ -103,4 +103,24 @@ async function get_all_servers()
 
 }
 
-module.exports = {createServer,joinServer,getUserServers,get_all_servers}
+async function get_server(serverId)
+{
+
+  try {
+    let server = await prisma.servers.findUnique({
+      where: {id:serverId}
+    })
+
+    return server;
+  }
+
+  catch(err)
+  {
+    console.error(err);
+    throw new Error('Failed to fetch server');
+
+  }
+
+}
+
+module.exports = {createServer,joinServer,getUserServers,get_all_servers,get_server}
