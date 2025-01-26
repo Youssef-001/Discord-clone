@@ -90,6 +90,10 @@ model DMS {
 
   receiver Users @relation("ReceiverDMS",fields: [receiverId], references: [id])
   receiverId String
+
+
+  message String
+  date DateTime
   
 }
 
