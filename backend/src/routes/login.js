@@ -38,6 +38,7 @@ passport.use(
 router.post("/", passport.authenticate('local', { session: false }), async (req, res, next) => {
     try {
       let user =  await user_queries.get_user(req.body.username);
+      console.log(user);  
       if (!user) {
         return res.status(401).json({ message: "User not found" });
       }

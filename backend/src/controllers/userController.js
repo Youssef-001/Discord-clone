@@ -11,6 +11,7 @@ async function createUser(req,res,next)
             else {
                let user =  await user_queries.createUser(req.body.email, req.body.display_name||req.body.username,req.body.username, hashedPassword);
 
+               console.log(user);
                 res.status(200).json(user);
             }
         })

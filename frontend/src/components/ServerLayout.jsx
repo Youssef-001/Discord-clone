@@ -7,6 +7,8 @@ import ServerBar from './ServerBar';
 import ServerChannels from './ServerChannels';
 import TextChannel from './TextChannel'
 
+import ProfileSection  from './ProfileSection';
+
 const Layout = styled.div`
   display: grid;
   grid-template-columns: auto 1fr 6fr;

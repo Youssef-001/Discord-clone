@@ -3,6 +3,9 @@ import {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom';
 
+import { jwtDecode } from "jwt-decode";
+
+import ProfileSection from './ProfileSection';
 
 const ChannelBar = styled.div`
 
@@ -50,6 +53,21 @@ const TextChannels = styled.div``
 function ServerChannels({name, server,setCurrentChannel,createChannelDialog, setCreateChannelDialog})
 {
     const navigate = useNavigate(); // Initialize navigate
+    const token = localStorage.getItem('token');
+    const [isOwner, setIsOwner] = useState(false);
+    const user = jwtDecode(token);
+    console.log("user::: ", user);
+    
+
+    useEffect(() => {
+
+        async function checkOwner()
+        {
+
+            let response = fetch('http://')
+
+        }
+    })
 
 
     function changeChannel(channel)
@@ -62,7 +80,7 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
 
     return (
 
-        <>
+        <div style={{display:'flex', }}>
 
         <ChannelBar>
         <ServerInfo>
@@ -106,10 +124,14 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
 
 
         </TextChannels>
+        <div style={{}}>
+        <ProfileSection avatar={user.avatar} name={user.name} status={user.status}></ProfileSection>
+
+        </div>
         </ChannelBar>
         
 
-        </>
+        </div>
     )
     
 }

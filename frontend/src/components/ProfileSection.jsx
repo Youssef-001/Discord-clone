@@ -4,14 +4,14 @@ import logo from '../assets/l.jpeg';
 
 const DIV = styled.div`
 background-color: #232428;
-width: 100%;
 height: fit-content;
 padding: 6px;
 display:flex;
-position:absolute;
+position:relative;
 bottom: 0;
 justify-content:center;
 align-items:center;
+margin-top:auto;
 
 `
 
@@ -81,6 +81,7 @@ const D3 = styled.div`
 display:flex;
 flex-direction:column;
 gap: 5px;
+
 `
 
 function formatString(text)

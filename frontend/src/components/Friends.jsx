@@ -13,14 +13,15 @@ background-color: #2B2D31;
 position:relative;
 
 
-
+display:flex;
+flex-direction: column;
 `
 
 
 const FriendsDiv = styled.div`
 margin-top: 1rem;
-margin-right: 3rem;
 padding: 1rem;
+
 `
 
 const P2 = styled.p`
