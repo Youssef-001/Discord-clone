@@ -11,6 +11,8 @@ const ChannelBar = styled.div`
 
 height: 100%;
 background-color:#2B2D31;
+display:flex;
+flex-direction:column;
 
 `
 const ServerInfo = styled.div`padding: 1rem; border-bottom: 1px solid black;
@@ -80,7 +82,7 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
 
     return (
 
-        <div style={{display:'flex', }}>
+        <div style={{ }}>
 
         <ChannelBar>
         <ServerInfo>
@@ -124,8 +126,8 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
 
 
         </TextChannels>
-        <div style={{}}>
-        <ProfileSection avatar={user.avatar} name={user.name} status={user.status}></ProfileSection>
+        <div style={{marginTop:'auto'}}>
+        <ProfileSection avatar={user.avatar} name={user.display_name} status={user.status}></ProfileSection>
 
         </div>
         </ChannelBar>
