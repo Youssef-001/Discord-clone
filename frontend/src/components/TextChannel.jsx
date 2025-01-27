@@ -86,6 +86,8 @@ function TextChannel({ channelName, currentChannel, isDm=false }) {
   const [message, setMessage] = useState('');
   const {user1,user2} = useParams();
 
+
+
   useEffect(() => {
     async function fetchMessages() {
       console.log("Fetching messages...");
@@ -114,7 +116,7 @@ function TextChannel({ channelName, currentChannel, isDm=false }) {
     
 
     fetchMessages();
-  }, [currentChannel]); // Only refetch when currentChannel changes
+  }, [currentChannel,user2]); // Only refetch when currentChannel changes
 
 
 useEffect(() => {

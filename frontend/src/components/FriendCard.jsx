@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import logo from '../assets/l.jpeg';
 import ProximaNova from '../assets/Demo_Fonts/Fontspring-DEMO-proximanova-light.otf';
 
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
+
 // Global font-face definition
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -140,12 +143,20 @@ function PendingControls({id})
   )
 }
 
-function FriendCard({ avatar = logo, name, status, isPending, id }) {
-  console.log("id: ", id)
+
+
+function FriendCard({ avatar = logo, name, status, isPending, user2 }) {
+
+  const token = localStorage.getItem('token');
+  const user = jwtDecode(token);
+  const user1 = user.id;
+
+  const navigate = useNavigate();
+
   return (
     <>
       <GlobalStyle />
-      <Button >
+      <Button onClick={() => {navigate(`/dms/${user1}/${user2}`)}}>
         <ImgContainer status={status}>
           <Img src={logo} alt="" />
         </ImgContainer>

@@ -76,6 +76,7 @@ function Friends({isDm=false})
       key={index}
       name={friend.user.display_name}
       status={friend.user.status}
+      user2={friend.userId}
     />
   ))}
         </FriendsSection>
