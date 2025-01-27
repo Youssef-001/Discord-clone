@@ -35,7 +35,7 @@ font-family: Helvetica;
 `
 const FriendsSection = styled.div`margin-top: 2rem;`;
 
-function Friends()
+function Friends({isDm=false})
 {
     const token = localStorage.getItem('token');
     const user = jwtDecode(token);
@@ -89,7 +89,10 @@ function Friends()
 
         </Aside>
 
-        <FriendsHome friends={friends}/>
+        {!isDm ?
+                <FriendsHome friends={friends}/> : null
+
+        }
 
         </>
 

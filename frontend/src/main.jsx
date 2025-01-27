@@ -38,7 +38,7 @@ import DiscoverLayout from './components/DiscoverLayout.jsx'
     },
 
     {
-      path : 'dm/:username',
+      path : 'dm/:user1/:user2',
       element : <DmLayout></DmLayout>
     }
 

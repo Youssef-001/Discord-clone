@@ -75,7 +75,7 @@ const ChannelMessages = styled.div`
 
 `;
 
-function TextChannel({ channelName, currentChannel }) {
+function TextChannel({ channelName, currentChannel, isDm=false }) {
   const messagesRef = useRef([]);
 
   const { serverId, channelId } = useParams();
