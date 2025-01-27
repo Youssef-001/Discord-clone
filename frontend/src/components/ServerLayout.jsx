@@ -76,6 +76,7 @@ function ServerLayout() {
   const [isLoading, setIsLoading] = useState(true);
   const [createChannelDialog, setCreateChannelDialog] = useState(false);
   const [currentChannel, setCurrentChannel] = useState();
+  const [serverUsers, setServerUsers] = useState();
 
   const location = useLocation();
   const passedState = location.state || {};
@@ -87,7 +88,7 @@ function ServerLayout() {
   const [channelName, setChannelName] = useState('');
 
 
-  console.log("channel id: ", channelId)
+
 
   async function createChannel(e)
   {
@@ -122,6 +123,9 @@ function ServerLayout() {
     }
     setIsLoading(false);
   }, [servers, serverId]);
+
+
+  
 
   // Loading state
   if (isLoading) {

@@ -53,5 +53,9 @@ router.get('/:serverId',(req,res) => {
     serverController.getServer(req,res);
 })
 
+router.get('/:serverId/users', (req,res) => {
+    serverController.getServerUsers(req,res);
+})
+
 
 module.exports = router;

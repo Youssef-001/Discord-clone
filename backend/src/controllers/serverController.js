@@ -47,5 +47,20 @@ async function getServer(req,res)
     res.json(server);
 }
 
+async function getServerUsers(req,res)
+{
+    try {
+    const serverId = req.params.serverId;
+    let serverUsers = await server_queries.get_server_users(serverId);
+    res.json(serverUsers);
+    }
 
-module.exports = {createServer,joinServer,getUserServers,getAllServers,getServer}
+    catch(err)
+    {
+        console.error(err);
+        
+    }
+}
+
+
+module.exports = {createServer,joinServer,getUserServers,getAllServers,getServer,getServerUsers}

@@ -123,4 +123,37 @@ async function get_server(serverId)
 
 }
 
-module.exports = {createServer,joinServer,getUserServers,get_all_servers,get_server}
+
+async function get_server_users(serverId) {
+  try {
+    const users = await prisma.servers.findUnique({
+      where: {
+        id: serverId, // The ID of the server you're querying
+      },
+      select: {
+        members: {
+          select: {
+            id: true,
+            email: true,
+            display_name: true,
+            username: true,
+            avatar: true,
+            status: true,
+          },
+        },
+      },
+    });
+
+    if (!users) {
+      console.log("Server not found or no members in the server.");
+      return [];
+    }
+
+    return users.members;
+  } catch (error) {
+    console.error("Error fetching users in server:", error);
+    throw error;
+  }
+}
+
+module.exports = {createServer,joinServer,getUserServers,get_all_servers,get_server,get_server_users}
