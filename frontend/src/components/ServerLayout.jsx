@@ -6,12 +6,12 @@ import ServerDialog from './ServerDialog';
 import ServerBar from './ServerBar';
 import ServerChannels from './ServerChannels';
 import TextChannel from './TextChannel'
-
+import ServerUsers from './ServerUsers'
 import ProfileSection  from './ProfileSection';
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr 6fr;
+  grid-template-columns: auto 1fr 6fr auto;
   opacity: ${(props) => (props.dimmed ? 0.5 : 1)}; /* Adjust opacity based on dimmed prop */
 \  transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
 
@@ -76,7 +76,7 @@ function ServerLayout() {
   const [isLoading, setIsLoading] = useState(true);
   const [createChannelDialog, setCreateChannelDialog] = useState(false);
   const [currentChannel, setCurrentChannel] = useState();
-  const [serverUsers, setServerUsers] = useState();
+  const [serverUsers, setServerUsers] = useState([]);
 
   const location = useLocation();
   const passedState = location.state || {};
@@ -125,7 +125,17 @@ function ServerLayout() {
   }, [servers, serverId]);
 
 
-  
+  useEffect(() => {
+    async function fetchServerUsers()
+    {
+      const request = await fetch(`http://localhost:5000/server/${serverId}/users`);
+      const server_users = await request.json();
+
+      setServerUsers(server_users);
+    }
+
+    fetchServerUsers();
+  } ,[serverId])
 
   // Loading state
   if (isLoading) {
@@ -161,7 +171,6 @@ function ServerLayout() {
         createChannelDialog={createChannelDialog}
         setCreateChannelDialog={setCreateChannelDialog}
       />
-
 {createChannelDialog ? <ChannelDialog>
 
 
@@ -218,6 +227,10 @@ function ServerLayout() {
 
 </ChannelDialog> : null}
 <TextChannel currentChannel={currentChannel} channelName={currentChannel.name} ></TextChannel>
+
+{serverUsers.length > 0 ?  <ServerUsers users={serverUsers}></ServerUsers>
+ : null}
+
     </Layout>
 
     
