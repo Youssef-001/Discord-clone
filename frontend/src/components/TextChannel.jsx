@@ -84,12 +84,22 @@ function TextChannel({ channelName, currentChannel, isDm=false }) {
   const messagesEndRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState('');
+  const {user1,user2} = useParams();
 
   useEffect(() => {
     async function fetchMessages() {
       console.log("Fetching messages...");
       try {
-        let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${currentChannel.id}/messages`, {
+        let endpoint;
+        if (isDm == false)
+        {
+          endpoint = `http://localhost:5000/server/${serverId}/channel/${currentChannel.id}/messages`;
+        }
+        else {
+          endpoint = `http://localhost:5000/dms/${user1}/${user2}`
+        }
+
+        let response = await fetch(endpoint, {
           headers: { Authorization: `Bearer ${token}` },
         });
         let responseJson = await response.json();
@@ -111,7 +121,7 @@ useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages]); // Trigger effect when messages change
+  }, [messages,isDm]); // Trigger effect when messages change
 
 
   async function submitMessage(e) {
@@ -153,15 +163,21 @@ useEffect(() => {
   {isLoading ? (
     <p>Loading messages...</p> // Show loading message while fetching
   ) : messages.length > 0 ? (
-    messages.map((message) => (
+    messages.map((message) => {
+
+      const avatar = message.user?.avatar || message.sender?.avatar;
+      const name =
+        message.user?.display_name || message.sender?.display_name || "Unknown";
+      
+      return(
       <Message
-        key={message.id}
-        avatar={message.user?.avatar}
-        name={message.user.display_name}
-        message={message.message}
-        date={message.date}
-      />
-    ))
+      key={message.id}
+      avatar={avatar}
+      name={name}
+      message={message.message}
+      date={message.date}
+      />)
+    })
   ) : (
     <p>No messages found.</p> // Fallback UI when messages are empty
   )}
