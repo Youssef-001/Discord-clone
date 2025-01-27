@@ -127,7 +127,17 @@ useEffect(() => {
   async function submitMessage(e) {
     e.preventDefault();
     try {
-      let response = await fetch(`http://localhost:5000/server/${serverId}/channel/${channelId}/message`, {
+
+      let endpoint;
+      if (isDm == false)
+      {
+        endpoint = `http://localhost:5000/server/${serverId}/channel/${channelId}/message`;
+      }
+      else {
+        endpoint = `http://localhost:5000/dms/${user1}/${user2}`
+      }
+
+      let response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
