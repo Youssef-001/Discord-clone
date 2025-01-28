@@ -115,7 +115,7 @@ async function AcceptRequest(id)
   let token = localStorage.getItem('token');
   console.log(token);
 
-  let request = await fetch(`http://localhost:5000/requests/friend-requests/accept/${id}`, { method:'PUT',headers: {Authorization: `Bearer ${token}`}});
+  let request = await fetch(`http://localhost:5001/requests/friend-requests/accept/${id}`, { method:'PUT',headers: {Authorization: `Bearer ${token}`}});
   let requestJson = await request.json();
   console.log(requestJson);
 
@@ -124,7 +124,7 @@ async function AcceptRequest(id)
 function PendingControls({id})
 {
   return (
-    <div style={{marginLeft:'auto', display:'flex', gap: '1rem'}}>
+    <div style={{marginLeft:'auto', display:'flex', gap: '1rem',}}>
 <AcceptButton onClick={(e) => {AcceptRequest(id)}}> 
           <SVG xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
@@ -150,20 +150,23 @@ function FriendCard({ avatar = logo, name, status, isPending, user2 }) {
   const token = localStorage.getItem('token');
   const user = jwtDecode(token);
   const user1 = user.id;
+  console.log(user2);
+
+  console.log(user1,user2);
 
   const navigate = useNavigate();
 
   return (
-    <>
+    <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
       <GlobalStyle />
       <Button onClick={() => {navigate(`/dms/${user1}/${user2}`)}}>
         <ImgContainer status={status}>
           <Img src={logo} alt="" />
         </ImgContainer>
         <P>{name}</P>
-        {isPending ? <PendingControls id={id} style={{marginLeft:'3rem'}}></PendingControls> : null}
       </Button>
-    </>
+        {isPending ? <PendingControls id={user2} style={{marginLeft:'3rem'}}></PendingControls> : null}
+    </div>
   );
 }
 

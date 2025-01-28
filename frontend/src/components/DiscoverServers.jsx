@@ -64,7 +64,7 @@ const P = styled.p`
 `;
 
 function DiscoverServers({ servers, setServers, allServers }) {
-  const baseUrl = 'http://localhost:5000/uploads/';
+  const baseUrl = 'http://localhost:5001/uploads/';
   console.log(servers);
   
 
@@ -73,7 +73,7 @@ function DiscoverServers({ servers, setServers, allServers }) {
   async function joinServer(serverId)
   {
 
-    let request = await fetch(`http://localhost:5000/server/${serverId}/join`, {method:'POST', headers: {Authorization: `Bearer ${token}`}});
+    let request = await fetch(`http://localhost:5001/server/${serverId}/join`, {method:'POST', headers: {Authorization: `Bearer ${token}`}});
     let requestJson = await request.json();
     console.log(requestJson);
     setServers([...servers, requestJson])

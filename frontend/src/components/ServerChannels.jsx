@@ -70,7 +70,7 @@ function ServerChannels({name, server,setCurrentChannel,createChannelDialog, set
         async function checkOwner()
         {
 
-            let response = await fetch(`http://localhost:5000/server/${serverId}`);
+            let response = await fetch(`http://localhost:5001/server/${serverId}`);
             let responseJson = await response.json();
             console.log("halllllllo");
             console.log(responseJson)

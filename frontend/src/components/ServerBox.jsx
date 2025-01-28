@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 // ServerBox component
 function ServerBox({ avatar, serverId, channelId, servers, name}) {
-  const baseUrl = "http://localhost:5000/uploads";
+  const baseUrl = "http://localhost:5001/uploads";
   const [imageUrl, setImageUrl] = useState(`${baseUrl}/${avatar}`);
   const navigate = useNavigate(); // Initialize the navigate function
   console.log("CHANNEL ID: ", servers)

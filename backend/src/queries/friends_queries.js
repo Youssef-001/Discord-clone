@@ -90,7 +90,10 @@ async function send_friend_request(senderId, recipientId) {
 
     const requests = await prisma.userFriends.findMany({
       where: {
-        userId: userId
+        OR: [
+          {userId: userId},
+          {friendId: userId}
+        ]
       },  include: {
         user: true,   // Include details of the other user
         friend: true, // Include details of the friend

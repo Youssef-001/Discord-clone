@@ -46,7 +46,7 @@ async function getRequests(req,res)
 {
     let userId = req.user.id;
 
-    let requests = await friends_queries.get_requests();
+    let requests = await friends_queries.get_requests(userId);
 
     res.json(requests);
 }

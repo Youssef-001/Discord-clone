@@ -114,7 +114,7 @@ function filterFriends( friends, filter ) {
           name={friend.user.username}
           status={friend.user.status}
           isPending={friend.status == "PENDING" ? true : false}
-          id={friend.user.id}
+          user2={friend.user.id}
         />
       ))}
     </>
@@ -133,12 +133,12 @@ function FriendsHome({friends}) {
   {
     e.preventDefault();
 
-    let request = await fetch(`http://localhost:5000/users/${username}/id`);
+    let request = await fetch(`http://localhost:5001/users/${username}/id`);
     let requestJson = await request.json();
     const token = localStorage.getItem('token');
     let receiverId = requestJson.userId;
 
-    let request2 = await fetch(`http://localhost:5000/requests/friend-requests/${receiverId}`, {method:'POST', headers: {Authorization: `Bearer ${token}`}});
+    let request2 = await fetch(`http://localhost:5001/requests/friend-requests/${receiverId}`, {method:'POST', headers: {Authorization: `Bearer ${token}`}});
     let friendRequest = await request2.json();
 
 

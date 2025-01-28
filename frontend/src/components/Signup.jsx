@@ -156,7 +156,7 @@ function Signup()
   
     const checkUsername = async (username) => {
       try {
-        const response = await fetch(`http://localhost:5000/signup/checkUsername?username=${username}`, {method:'POST'});
+        const response = await fetch(`http://localhost:5001/signup/checkUsername?username=${username}`, {method:'POST'});
         const result = await response.json();
         setIsUnique(result.isUnique);
       } catch (error) {
@@ -209,7 +209,7 @@ function Signup()
         setUsernameError([])
     
         try {
-          const response = await fetch('http://localhost:5000/signup', {
+          const response = await fetch('http://localhost:5001/signup', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -246,7 +246,7 @@ function Signup()
     return (
         <Container>
         <LoginDiv>
-            <LoginForm action="http://localhost:5000/signup" method="POST" onSubmit={handleSubmit}>
+            <LoginForm action="http://localhost:5001/signup" method="POST" onSubmit={handleSubmit}>
             <H1>Create an account</H1>
                 <InputDiv>
                 <EmailLabel isValid={emailValid} htmlFor="email">{emailLabel}<RedStar> *</RedStar></EmailLabel>

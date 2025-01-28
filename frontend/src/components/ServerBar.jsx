@@ -45,7 +45,7 @@ function ServerBar({ serverDialog, setDialog, servers, setServers, setSection })
         const userId = decodedToken.id;
 
         // Make the API request
-        const response = await fetch("http://localhost:5000/server/user", {
+        const response = await fetch("http://localhost:5001/server/user", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

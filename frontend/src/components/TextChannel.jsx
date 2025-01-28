@@ -95,10 +95,10 @@ function TextChannel({ channelName, currentChannel, isDm=false }) {
         let endpoint;
         if (isDm == false)
         {
-          endpoint = `http://localhost:5000/server/${serverId}/channel/${currentChannel.id}/messages`;
+          endpoint = `http://localhost:5001/server/${serverId}/channel/${currentChannel.id}/messages`;
         }
         else {
-          endpoint = `http://localhost:5000/dms/${user1}/${user2}`
+          endpoint = `http://localhost:5001/dms/${user1}/${user2}`
         }
 
         let response = await fetch(endpoint, {
@@ -133,10 +133,10 @@ useEffect(() => {
       let endpoint;
       if (isDm == false)
       {
-        endpoint = `http://localhost:5000/server/${serverId}/channel/${channelId}/message`;
+        endpoint = `http://localhost:5001/server/${serverId}/channel/${channelId}/message`;
       }
       else {
-        endpoint = `http://localhost:5000/dms/${user1}/${user2}`
+        endpoint = `http://localhost:5001/dms/${user1}/${user2}`
       }
 
       let response = await fetch(endpoint, {

@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express();
 app.use(cors())
+require('dotenv').config();
 
 app.use(express.json());
 
@@ -46,4 +47,4 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(5000, (req,res) => {})
+app.listen(process.env.PORT, (req,res) => {})

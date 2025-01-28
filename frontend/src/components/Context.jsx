@@ -24,7 +24,7 @@ export const AppProvider = ({ children }) => {
           const userId = decodedToken.id;
   
           // Make the API request
-          const servers = await fetch("http://localhost:5000/server/user", {
+          const servers = await fetch("http://localhost:5001/server/user", {
             headers: { Authorization: `Bearer ${token}` },
           });
           console.log(servers)
@@ -52,7 +52,7 @@ export const AppProvider = ({ children }) => {
           const userId = decodedToken.id;
   
           // Make the API request
-          const servers = await fetch("http://localhost:5000/server", 
+          const servers = await fetch("http://localhost:5001/server", 
           );
           console.log(servers)
   

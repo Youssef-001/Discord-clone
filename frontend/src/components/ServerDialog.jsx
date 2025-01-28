@@ -137,7 +137,7 @@ export default function ServerDialog({serverDialoge,setServerDialoge, servers, s
         form.append('token', token)
       
         try {
-          const response = await fetch('http://localhost:5000/server/create', {
+          const response = await fetch('http://localhost:5001/server/create', {
             method: 'POST',
             body: form,
             headers: {Authorization: `Bearer ${token}`}

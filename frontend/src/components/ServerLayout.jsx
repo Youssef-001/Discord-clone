@@ -93,7 +93,7 @@ function ServerLayout() {
   async function createChannel(e)
   {
 
-    const response = await fetch(`http://localhost:5000/server/${serverId}/channel`, {
+    const response = await fetch(`http://localhost:5001/server/${serverId}/channel`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', // Specify JSON content
@@ -128,7 +128,7 @@ function ServerLayout() {
   useEffect(() => {
     async function fetchServerUsers()
     {
-      const request = await fetch(`http://localhost:5000/server/${serverId}/users`);
+      const request = await fetch(`http://localhost:5001/server/${serverId}/users`);
       const server_users = await request.json();
 
       setServerUsers(server_users);

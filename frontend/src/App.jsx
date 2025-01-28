@@ -12,6 +12,8 @@ const GlobalReset = styled.div`
     
   }
 `;
+
+
 function App() {
   const [count, setCount] = useState(0)
   

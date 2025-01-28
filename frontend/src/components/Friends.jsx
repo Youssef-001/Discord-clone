@@ -41,12 +41,13 @@ function Friends({isDm=false})
     const user = jwtDecode(token);
     const [friends,setFriends] = useState([]);
 
+    console.log(friends);
 
     useEffect(() => {
 
         async function getUserFriends()
         {
-            let req = await fetch('http://localhost:5000/requests', {headers: {Authorization: `Bearer ${token}`}});
+            let req = await fetch('http://localhost:5001/requests', {headers: {Authorization: `Bearer ${token}`}});
             let friends = await req.json();
             console.log(friends)
             setFriends(friends);
@@ -76,7 +77,7 @@ function Friends({isDm=false})
       key={index}
       name={friend.user.display_name}
       status={friend.user.status}
-      user2={friend.userId}
+      user2={friend.friend.id}
     />
   ))}
         </FriendsSection>
