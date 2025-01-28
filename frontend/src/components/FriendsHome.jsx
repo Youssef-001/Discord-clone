@@ -103,6 +103,9 @@ function filterFriends( friends, filter ) {
     filteredFriends = friends.filter(friend => friend.status === "PENDING");
   }
 
+
+ 
+
   return (
     <>
       {filteredFriends.map((friend, index) => (
@@ -121,11 +124,52 @@ function filterFriends( friends, filter ) {
 
 function FriendsHome({friends}) {
   console.log(friends);
-  
+  const [username, setUsername] = useState('');
+
   const [section, setSection] = useState('ONLINE');
+
+
+  async function sendFriendRequest(e)
+  {
+    e.preventDefault();
+
+    let request = await fetch(`http://localhost:5000/users/${username}/id`);
+    let requestJson = await request.json();
+    const token = localStorage.getItem('token');
+    let receiverId = requestJson.userId;
+
+    let request2 = await fetch(`http://localhost:5000/requests/friend-requests/${receiverId}`, {method:'POST', headers: {Authorization: `Bearer ${token}`}});
+    let friendRequest = await request2.json();
+
+
+  }
+
   const renderContent = () => {
     if (section === 'ADD') {
-      return <P>Add Friend Section Coming Soon...</P>; // Placeholder for Add Friend section
+      return (<>
+      
+      <form action="">
+        <div style={{ width:'100%',position:'relative'}}>
+        <label htmlFor="add" style={{display:'block', color:'white'}}>ADD FRIEND</label>
+        <input type="text" style={{width:'90%', padding:'0.9rem',marginTop:'20px', backgroundColor:'#1E1F22', border:'1px solid #1E1F22'
+          ,color:'#B6B9BC'
+          ,fontSize:'1rem',
+          borderRadius:'4px'
+
+        }} onChange={(e) => {setUsername(e.target.value)} }/>
+
+          
+        <button type="submit" style={{backgroundColor:'#4852C4', color:'white', padding:'0.5rem', border:'1px solid #4852C4'
+          ,borderRadius:'4px',fontSize:'0.9rem', position:'absolute', right: '130px', top:'48px'
+        }}  onClick={sendFriendRequest}>Send Friend Request</button>
+        </div>
+      </form>
+
+        
+        
+        </>
+
+      )
     }
     return filterFriends(friends,section);
   };
